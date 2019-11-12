@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="prestamoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'prestamo.dbo.Cliente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="NumeroCliente" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Apellido" />
+            <PropertyRef Name="TipoDocumento" />
+            <PropertyRef Name="Documento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="RazonSocial" />
+            <PropertyRef Name="Nacimiento" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Direccion" />
+            <PropertyRef Name="LugarTrabajo" />
+            <PropertyRef Name="AntiguedadLaboral" />
+          </Key>
+          <Property Name="NumeroCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoDocumento" Type="int" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="22" Nullable="false" />
+          <Property Name="Sexo" Type="int" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nacimiento" Type="datetime" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LugarTrabajo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AntiguedadLaboral" Type="int" Nullable="false" />
+          <Property Name="DireccionLaboral" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="cobranza">
+          <Key>
+            <PropertyRef Name="cob_nro" />
+          </Key>
+          <Property Name="cob_nro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cob_fech" Type="datetime" Nullable="false" />
+          <Property Name="cob_montototal" Type="int" Nullable="false" />
+          <Property Name="cob_totalmora" Type="int" Nullable="false" />
+          <Property Name="cob_totaldcto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cobranza_cheque">
+          <Key>
+            <PropertyRef Name="cobcheque_codigo" />
+          </Key>
+          <Property Name="cobcheque_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cobcheque_tipo" Type="varchar" MaxLength="3" />
+          <Property Name="cobcheque_nro" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="cob_nro" Type="int" Nullable="false" />
+          <Property Name="cobcheque_fecha" Type="date" Nullable="false" />
+          <Property Name="cobcheque_monto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cobranza_detalle">
+          <Key>
+            <PropertyRef Name="cobdet_id" />
+          </Key>
+          <Property Name="cobdet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cobcab_nro" Type="int" Nullable="false" />
+          <Property Name="cobdet_preid" Type="int" Nullable="false" />
+          <Property Name="cobdet_mora" Type="int" Nullable="false" />
+          <Property Name="cobdet_dcto" Type="int" />
+        </EntityType>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comentario" Type="varchar" MaxLength="120" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forma_pago">
+          <Key>
+            <PropertyRef Name="fpa_codigo" />
+          </Key>
+          <Property Name="fpa_codigo" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="fpa_descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Informconf">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Informconf" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Faja" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="moneda">
+          <Key>
+            <PropertyRef Name="mon_codigo" />
+          </Key>
+          <Property Name="mon_codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="mon_descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="mon_pais" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'prestamo.dbo.personal' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="personal">
+          <Key>
+            <PropertyRef Name="NumeroEmpleado" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Apellido" />
+            <PropertyRef Name="Documento" />
+            <PropertyRef Name="Cargo" />
+            <PropertyRef Name="FechaNac" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Direccion" />
+            <PropertyRef Name="TipoDeDocumento" />
+            <PropertyRef Name="Sexo" />
+          </Key>
+          <Property Name="NumeroEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cargo" Type="int" Nullable="false" />
+          <Property Name="FechaNac" Type="datetime" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoDeDocumento" Type="int" Nullable="false" />
+          <Property Name="Sexo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prestamo">
+          <Key>
+            <PropertyRef Name="pre_numero" />
+          </Key>
+          <Property Name="pre_numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pre_fecha" Type="date" Nullable="false" />
+          <Property Name="pre_cliente" Type="int" Nullable="false" />
+          <Property Name="pre_tipoprestamo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="pre_montosolicitado" Type="int" Nullable="false" />
+          <Property Name="pre_moneda" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="pre_cantcuota" Type="int" Nullable="false" />
+          <Property Name="pre_interes" Type="int" Nullable="false" />
+          <Property Name="pre_montototal" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prestamo_detalle">
+          <Key>
+            <PropertyRef Name="predet_id" />
+          </Key>
+          <Property Name="predet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="predet_nrocabecera" Type="int" Nullable="false" />
+          <Property Name="predet_nrocuota" Type="int" Nullable="false" />
+          <Property Name="predet_monto" Type="int" Nullable="false" />
+          <Property Name="predet_saldo" Type="int" Nullable="false" />
+          <Property Name="predet_vencimiento" Type="date" Nullable="false" />
+          <Property Name="predet_estado" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'prestamo.dbo.Solicitud_Credito' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Solicitud_Credito">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="NumeroCliente" />
+            <PropertyRef Name="TotalEgreso" />
+            <PropertyRef Name="TotalIngreso" />
+            <PropertyRef Name="Informconf" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroCliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalEgreso" Type="int" Nullable="false" />
+          <Property Name="TotalIngreso" Type="int" Nullable="false" />
+          <Property Name="Informconf" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="aprobado" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tipo_prestamo">
+          <Key>
+            <PropertyRef Name="tpre_codigo" />
+          </Key>
+          <Property Name="tpre_codigo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tpre_descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="tpre_interes" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usu_codigo" />
+            <PropertyRef Name="usu_clave" />
+            <PropertyRef Name="usu_nombrecompleto" />
+          </Key>
+          <Property Name="usu_codigo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="usu_clave" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="usu_nombrecompleto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usu_ultacceso" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="prestamoModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cobranza" EntityType="Self.cobranza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cobranza_cheque" EntityType="Self.cobranza_cheque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cobranza_detalle" EntityType="Self.cobranza_detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comentario" EntityType="Self.Comentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forma_pago" EntityType="Self.forma_pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informconf" EntityType="Self.Informconf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="moneda" EntityType="Self.moneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prestamo" EntityType="Self.prestamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prestamo_detalle" EntityType="Self.prestamo_detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_prestamo" EntityType="Self.tipo_prestamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Cliente].[NumeroCliente] AS [NumeroCliente], 
+    [Cliente].[Nombre] AS [Nombre], 
+    [Cliente].[Apellido] AS [Apellido], 
+    [Cliente].[TipoDocumento] AS [TipoDocumento], 
+    [Cliente].[Documento] AS [Documento], 
+    [Cliente].[Sexo] AS [Sexo], 
+    [Cliente].[RazonSocial] AS [RazonSocial], 
+    [Cliente].[Nacimiento] AS [Nacimiento], 
+    [Cliente].[Telefono] AS [Telefono], 
+    [Cliente].[Direccion] AS [Direccion], 
+    [Cliente].[LugarTrabajo] AS [LugarTrabajo], 
+    [Cliente].[AntiguedadLaboral] AS [AntiguedadLaboral], 
+    [Cliente].[DireccionLaboral] AS [DireccionLaboral]
+    FROM [dbo].[Cliente] AS [Cliente]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="personal" EntityType="Self.personal" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [personal].[NumeroEmpleado] AS [NumeroEmpleado], 
+    [personal].[Nombre] AS [Nombre], 
+    [personal].[Apellido] AS [Apellido], 
+    [personal].[Documento] AS [Documento], 
+    [personal].[Cargo] AS [Cargo], 
+    [personal].[FechaNac] AS [FechaNac], 
+    [personal].[Telefono] AS [Telefono], 
+    [personal].[Direccion] AS [Direccion], 
+    [personal].[TipoDeDocumento] AS [TipoDeDocumento], 
+    [personal].[Sexo] AS [Sexo]
+    FROM [dbo].[personal] AS [personal]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Solicitud_Credito" EntityType="Self.Solicitud_Credito" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Solicitud_Credito].[id] AS [id], 
+    [Solicitud_Credito].[NumeroCliente] AS [NumeroCliente], 
+    [Solicitud_Credito].[TotalEgreso] AS [TotalEgreso], 
+    [Solicitud_Credito].[TotalIngreso] AS [TotalIngreso], 
+    [Solicitud_Credito].[Informconf] AS [Informconf], 
+    [Solicitud_Credito].[aprobado] AS [aprobado]
+    FROM [dbo].[Solicitud_Credito] AS [Solicitud_Credito]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="usuario" EntityType="Self.usuario" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [usuario].[usu_codigo] AS [usu_codigo], 
+    [usuario].[usu_clave] AS [usu_clave], 
+    [usuario].[usu_nombrecompleto] AS [usu_nombrecompleto], 
+    [usuario].[usu_ultacceso] AS [usu_ultacceso]
+    FROM [dbo].[usuario] AS [usuario]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="prestamoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="cobranza">
+          <Key>
+            <PropertyRef Name="cob_nro" />
+          </Key>
+          <Property Name="cob_nro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cob_fech" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cob_montototal" Type="Int32" Nullable="false" />
+          <Property Name="cob_totalmora" Type="Int32" Nullable="false" />
+          <Property Name="cob_totaldcto" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cobranza_cheque">
+          <Key>
+            <PropertyRef Name="cobcheque_codigo" />
+          </Key>
+          <Property Name="cobcheque_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cobcheque_tipo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="cobcheque_nro" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cob_nro" Type="Int32" Nullable="false" />
+          <Property Name="cobcheque_fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cobcheque_monto" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cobranza_detalle">
+          <Key>
+            <PropertyRef Name="cobdet_id" />
+          </Key>
+          <Property Name="cobdet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cobcab_nro" Type="Int32" Nullable="false" />
+          <Property Name="cobdet_preid" Type="Int32" Nullable="false" />
+          <Property Name="cobdet_mora" Type="Int32" Nullable="false" />
+          <Property Name="cobdet_dcto" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentario1" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forma_pago">
+          <Key>
+            <PropertyRef Name="fpa_codigo" />
+          </Key>
+          <Property Name="fpa_codigo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fpa_descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Informconf">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Informconf1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Faja" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="moneda">
+          <Key>
+            <PropertyRef Name="mon_codigo" />
+          </Key>
+          <Property Name="mon_codigo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mon_descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mon_pais" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="prestamo">
+          <Key>
+            <PropertyRef Name="pre_numero" />
+          </Key>
+          <Property Name="pre_numero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pre_fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="pre_cliente" Type="Int32" Nullable="false" />
+          <Property Name="pre_tipoprestamo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pre_montosolicitado" Type="Int32" Nullable="false" />
+          <Property Name="pre_moneda" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pre_cantcuota" Type="Int32" Nullable="false" />
+          <Property Name="pre_interes" Type="Int32" Nullable="false" />
+          <Property Name="pre_montototal" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prestamo_detalle">
+          <Key>
+            <PropertyRef Name="predet_id" />
+          </Key>
+          <Property Name="predet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="predet_nrocabecera" Type="Int32" Nullable="false" />
+          <Property Name="predet_nrocuota" Type="Int32" Nullable="false" />
+          <Property Name="predet_monto" Type="Int32" Nullable="false" />
+          <Property Name="predet_saldo" Type="Int32" Nullable="false" />
+          <Property Name="predet_vencimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="predet_estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_prestamo">
+          <Key>
+            <PropertyRef Name="tpre_codigo" />
+          </Key>
+          <Property Name="tpre_codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tpre_descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tpre_interes" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="NumeroCliente" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Apellido" />
+            <PropertyRef Name="TipoDocumento" />
+            <PropertyRef Name="Documento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="RazonSocial" />
+            <PropertyRef Name="Nacimiento" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Direccion" />
+            <PropertyRef Name="LugarTrabajo" />
+            <PropertyRef Name="AntiguedadLaboral" />
+          </Key>
+          <Property Name="NumeroCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoDocumento" Type="Int32" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="22" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sexo" Type="Int32" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LugarTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AntiguedadLaboral" Type="Int32" Nullable="false" />
+          <Property Name="DireccionLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="personal">
+          <Key>
+            <PropertyRef Name="NumeroEmpleado" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Apellido" />
+            <PropertyRef Name="Documento" />
+            <PropertyRef Name="Cargo" />
+            <PropertyRef Name="FechaNac" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Direccion" />
+            <PropertyRef Name="TipoDeDocumento" />
+            <PropertyRef Name="Sexo" />
+          </Key>
+          <Property Name="NumeroEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cargo" Type="Int32" Nullable="false" />
+          <Property Name="FechaNac" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoDeDocumento" Type="Int32" Nullable="false" />
+          <Property Name="Sexo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Solicitud_Credito">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="NumeroCliente" />
+            <PropertyRef Name="TotalEgreso" />
+            <PropertyRef Name="TotalIngreso" />
+            <PropertyRef Name="Informconf" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalEgreso" Type="Int32" Nullable="false" />
+          <Property Name="TotalIngreso" Type="Int32" Nullable="false" />
+          <Property Name="Informconf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="aprobado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usu_codigo" />
+            <PropertyRef Name="usu_clave" />
+            <PropertyRef Name="usu_nombrecompleto" />
+          </Key>
+          <Property Name="usu_codigo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_clave" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_nombrecompleto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_ultacceso" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CreditoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="cobranza" EntityType="Self.cobranza" />
+          <EntitySet Name="cobranza_cheque" EntityType="Self.cobranza_cheque" />
+          <EntitySet Name="cobranza_detalle" EntityType="Self.cobranza_detalle" />
+          <EntitySet Name="Comentario" EntityType="Self.Comentario" />
+          <EntitySet Name="forma_pago" EntityType="Self.forma_pago" />
+          <EntitySet Name="Informconf" EntityType="Self.Informconf" />
+          <EntitySet Name="moneda" EntityType="Self.moneda" />
+          <EntitySet Name="prestamo" EntityType="Self.prestamo" />
+          <EntitySet Name="prestamo_detalle" EntityType="Self.prestamo_detalle" />
+          <EntitySet Name="tipo_prestamo" EntityType="Self.tipo_prestamo" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="personal" EntityType="Self.personal" />
+          <EntitySet Name="Solicitud_Credito" EntityType="Self.Solicitud_Credito" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="prestamoModelStoreContainer" CdmEntityContainer="CreditoEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="prestamoModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="prestamoModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="prestamoModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="prestamoModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="prestamoModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cobranza">
+            <EntityTypeMapping TypeName="prestamoModel.cobranza">
+              <MappingFragment StoreEntitySet="cobranza">
+                <ScalarProperty Name="cob_nro" ColumnName="cob_nro" />
+                <ScalarProperty Name="cob_fech" ColumnName="cob_fech" />
+                <ScalarProperty Name="cob_montototal" ColumnName="cob_montototal" />
+                <ScalarProperty Name="cob_totalmora" ColumnName="cob_totalmora" />
+                <ScalarProperty Name="cob_totaldcto" ColumnName="cob_totaldcto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cobranza_cheque">
+            <EntityTypeMapping TypeName="prestamoModel.cobranza_cheque">
+              <MappingFragment StoreEntitySet="cobranza_cheque">
+                <ScalarProperty Name="cobcheque_codigo" ColumnName="cobcheque_codigo" />
+                <ScalarProperty Name="cobcheque_tipo" ColumnName="cobcheque_tipo" />
+                <ScalarProperty Name="cobcheque_nro" ColumnName="cobcheque_nro" />
+                <ScalarProperty Name="cob_nro" ColumnName="cob_nro" />
+                <ScalarProperty Name="cobcheque_fecha" ColumnName="cobcheque_fecha" />
+                <ScalarProperty Name="cobcheque_monto" ColumnName="cobcheque_monto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cobranza_detalle">
+            <EntityTypeMapping TypeName="prestamoModel.cobranza_detalle">
+              <MappingFragment StoreEntitySet="cobranza_detalle">
+                <ScalarProperty Name="cobdet_id" ColumnName="cobdet_id" />
+                <ScalarProperty Name="cobcab_nro" ColumnName="cobcab_nro" />
+                <ScalarProperty Name="cobdet_preid" ColumnName="cobdet_preid" />
+                <ScalarProperty Name="cobdet_mora" ColumnName="cobdet_mora" />
+                <ScalarProperty Name="cobdet_dcto" ColumnName="cobdet_dcto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comentario">
+            <EntityTypeMapping TypeName="prestamoModel.Comentario">
+              <MappingFragment StoreEntitySet="Comentario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Comentario1" ColumnName="Comentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forma_pago">
+            <EntityTypeMapping TypeName="prestamoModel.forma_pago">
+              <MappingFragment StoreEntitySet="forma_pago">
+                <ScalarProperty Name="fpa_codigo" ColumnName="fpa_codigo" />
+                <ScalarProperty Name="fpa_descripcion" ColumnName="fpa_descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Informconf">
+            <EntityTypeMapping TypeName="prestamoModel.Informconf">
+              <MappingFragment StoreEntitySet="Informconf">
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Informconf1" ColumnName="Informconf" />
+                <ScalarProperty Name="Faja" ColumnName="Faja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="moneda">
+            <EntityTypeMapping TypeName="prestamoModel.moneda">
+              <MappingFragment StoreEntitySet="moneda">
+                <ScalarProperty Name="mon_codigo" ColumnName="mon_codigo" />
+                <ScalarProperty Name="mon_descripcion" ColumnName="mon_descripcion" />
+                <ScalarProperty Name="mon_pais" ColumnName="mon_pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prestamo">
+            <EntityTypeMapping TypeName="prestamoModel.prestamo">
+              <MappingFragment StoreEntitySet="prestamo">
+                <ScalarProperty Name="pre_numero" ColumnName="pre_numero" />
+                <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
+                <ScalarProperty Name="pre_cliente" ColumnName="pre_cliente" />
+                <ScalarProperty Name="pre_tipoprestamo" ColumnName="pre_tipoprestamo" />
+                <ScalarProperty Name="pre_montosolicitado" ColumnName="pre_montosolicitado" />
+                <ScalarProperty Name="pre_moneda" ColumnName="pre_moneda" />
+                <ScalarProperty Name="pre_cantcuota" ColumnName="pre_cantcuota" />
+                <ScalarProperty Name="pre_interes" ColumnName="pre_interes" />
+                <ScalarProperty Name="pre_montototal" ColumnName="pre_montototal" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prestamo_detalle">
+            <EntityTypeMapping TypeName="prestamoModel.prestamo_detalle">
+              <MappingFragment StoreEntitySet="prestamo_detalle">
+                <ScalarProperty Name="predet_id" ColumnName="predet_id" />
+                <ScalarProperty Name="predet_nrocabecera" ColumnName="predet_nrocabecera" />
+                <ScalarProperty Name="predet_nrocuota" ColumnName="predet_nrocuota" />
+                <ScalarProperty Name="predet_monto" ColumnName="predet_monto" />
+                <ScalarProperty Name="predet_saldo" ColumnName="predet_saldo" />
+                <ScalarProperty Name="predet_vencimiento" ColumnName="predet_vencimiento" />
+                <ScalarProperty Name="predet_estado" ColumnName="predet_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_prestamo">
+            <EntityTypeMapping TypeName="prestamoModel.tipo_prestamo">
+              <MappingFragment StoreEntitySet="tipo_prestamo">
+                <ScalarProperty Name="tpre_codigo" ColumnName="tpre_codigo" />
+                <ScalarProperty Name="tpre_descripcion" ColumnName="tpre_descripcion" />
+                <ScalarProperty Name="tpre_interes" ColumnName="tpre_interes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="prestamoModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Nacimiento" ColumnName="Nacimiento" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="LugarTrabajo" ColumnName="LugarTrabajo" />
+                <ScalarProperty Name="AntiguedadLaboral" ColumnName="AntiguedadLaboral" />
+                <ScalarProperty Name="DireccionLaboral" ColumnName="DireccionLaboral" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personal">
+            <EntityTypeMapping TypeName="prestamoModel.personal">
+              <MappingFragment StoreEntitySet="personal">
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="TipoDeDocumento" ColumnName="TipoDeDocumento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Solicitud_Credito">
+            <EntityTypeMapping TypeName="prestamoModel.Solicitud_Credito">
+              <MappingFragment StoreEntitySet="Solicitud_Credito">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
+                <ScalarProperty Name="TotalEgreso" ColumnName="TotalEgreso" />
+                <ScalarProperty Name="TotalIngreso" ColumnName="TotalIngreso" />
+                <ScalarProperty Name="Informconf" ColumnName="Informconf" />
+                <ScalarProperty Name="aprobado" ColumnName="aprobado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="prestamoModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="usu_codigo" ColumnName="usu_codigo" />
+                <ScalarProperty Name="usu_clave" ColumnName="usu_clave" />
+                <ScalarProperty Name="usu_nombrecompleto" ColumnName="usu_nombrecompleto" />
+                <ScalarProperty Name="usu_ultacceso" ColumnName="usu_ultacceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="prestamoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
