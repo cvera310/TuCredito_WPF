@@ -101,10 +101,20 @@
     <Compile Include="Comentario.cs">
       <DependentUpon>CreditoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CreditoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditoModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="CreditoModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CreditoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CreditoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditoModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>CreditoModel.tt</DependentUpon>
@@ -144,16 +154,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreditoModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreditoModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CreditoModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreditoModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -188,18 +188,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CreditoModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CreditoModel.Context.cs</LastGenOutput>
-      <DependentUpon>CreditoModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="CreditoModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CreditoModel.edmx</DependentUpon>
-      <LastGenOutput>CreditoModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +199,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreditoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CreditoModel.edmx</DependentUpon>
+      <LastGenOutput>CreditoModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CreditoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CreditoModel.edmx</DependentUpon>
+      <LastGenOutput>CreditoModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

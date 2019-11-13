@@ -66,22 +66,9 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'prestamo.dbo.Cliente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="NumeroCliente" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Apellido" />
-            <PropertyRef Name="TipoDocumento" />
-            <PropertyRef Name="Documento" />
-            <PropertyRef Name="Sexo" />
-            <PropertyRef Name="RazonSocial" />
-            <PropertyRef Name="Nacimiento" />
-            <PropertyRef Name="Telefono" />
-            <PropertyRef Name="Direccion" />
-            <PropertyRef Name="LugarTrabajo" />
-            <PropertyRef Name="AntiguedadLaboral" />
           </Key>
           <Property Name="NumeroCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
@@ -90,7 +77,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.Cliente' no tiene definida ning
           <Property Name="Documento" Type="varchar" MaxLength="22" Nullable="false" />
           <Property Name="Sexo" Type="int" Nullable="false" />
           <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Nacimiento" Type="datetime" Nullable="false" />
+          <Property Name="Nacimiento" Type="datetime" />
           <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LugarTrabajo" Type="varchar" MaxLength="50" Nullable="false" />
@@ -317,6 +304,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cobranza" EntityType="Self.cobranza" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cobranza_cheque" EntityType="Self.cobranza_cheque" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cobranza_detalle" EntityType="Self.cobranza_detalle" Schema="dbo" store:Type="Tables" />
@@ -327,23 +315,6 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <EntitySet Name="prestamo" EntityType="Self.prestamo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="prestamo_detalle" EntityType="Self.prestamo_detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_prestamo" EntityType="Self.tipo_prestamo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Cliente].[NumeroCliente] AS [NumeroCliente], 
-    [Cliente].[Nombre] AS [Nombre], 
-    [Cliente].[Apellido] AS [Apellido], 
-    [Cliente].[TipoDocumento] AS [TipoDocumento], 
-    [Cliente].[Documento] AS [Documento], 
-    [Cliente].[Sexo] AS [Sexo], 
-    [Cliente].[RazonSocial] AS [RazonSocial], 
-    [Cliente].[Nacimiento] AS [Nacimiento], 
-    [Cliente].[Telefono] AS [Telefono], 
-    [Cliente].[Direccion] AS [Direccion], 
-    [Cliente].[LugarTrabajo] AS [LugarTrabajo], 
-    [Cliente].[AntiguedadLaboral] AS [AntiguedadLaboral], 
-    [Cliente].[DireccionLaboral] AS [DireccionLaboral]
-    FROM [dbo].[Cliente] AS [Cliente]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="personal" EntityType="Self.personal" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [personal].[NumeroEmpleado] AS [NumeroEmpleado], 
@@ -457,6 +428,24 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="NumeroCliente" />
+          </Key>
+          <Property Name="NumeroCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoDocumento" Type="Int32" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="22" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sexo" Type="Int32" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nacimiento" Type="DateTime" Precision="3" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LugarTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AntiguedadLaboral" Type="Int32" Nullable="false" />
+          <Property Name="DireccionLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="cobranza">
           <Key>
             <PropertyRef Name="cob_nro" />
@@ -558,35 +547,6 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="tpre_descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tpre_interes" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Cliente">
-          <Key>
-            <PropertyRef Name="NumeroCliente" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Apellido" />
-            <PropertyRef Name="TipoDocumento" />
-            <PropertyRef Name="Documento" />
-            <PropertyRef Name="Sexo" />
-            <PropertyRef Name="RazonSocial" />
-            <PropertyRef Name="Nacimiento" />
-            <PropertyRef Name="Telefono" />
-            <PropertyRef Name="Direccion" />
-            <PropertyRef Name="LugarTrabajo" />
-            <PropertyRef Name="AntiguedadLaboral" />
-          </Key>
-          <Property Name="NumeroCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TipoDocumento" Type="Int32" Nullable="false" />
-          <Property Name="Documento" Type="String" MaxLength="22" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Sexo" Type="Int32" Nullable="false" />
-          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nacimiento" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LugarTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AntiguedadLaboral" Type="Int32" Nullable="false" />
-          <Property Name="DireccionLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="personal">
           <Key>
             <PropertyRef Name="NumeroEmpleado" />
@@ -669,12 +629,13 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CreditoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PrestamoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="cobranza" EntityType="Self.cobranza" />
           <EntitySet Name="cobranza_cheque" EntityType="Self.cobranza_cheque" />
           <EntitySet Name="cobranza_detalle" EntityType="Self.cobranza_detalle" />
@@ -685,7 +646,6 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <EntitySet Name="prestamo" EntityType="Self.prestamo" />
           <EntitySet Name="prestamo_detalle" EntityType="Self.prestamo_detalle" />
           <EntitySet Name="tipo_prestamo" EntityType="Self.tipo_prestamo" />
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="personal" EntityType="Self.personal" />
           <EntitySet Name="Solicitud_Credito" EntityType="Self.Solicitud_Credito" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
@@ -707,7 +667,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="prestamoModelStoreContainer" CdmEntityContainer="CreditoEntities">
+        <EntityContainerMapping StorageEntityContainer="prestamoModelStoreContainer" CdmEntityContainer="PrestamoEntities">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="prestamoModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -760,6 +720,25 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="prestamoModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Nacimiento" ColumnName="Nacimiento" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="LugarTrabajo" ColumnName="LugarTrabajo" />
+                <ScalarProperty Name="AntiguedadLaboral" ColumnName="AntiguedadLaboral" />
+                <ScalarProperty Name="DireccionLaboral" ColumnName="DireccionLaboral" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -871,25 +850,6 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
                 <ScalarProperty Name="tpre_codigo" ColumnName="tpre_codigo" />
                 <ScalarProperty Name="tpre_descripcion" ColumnName="tpre_descripcion" />
                 <ScalarProperty Name="tpre_interes" ColumnName="tpre_interes" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="prestamoModel.Cliente">
-              <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
-                <ScalarProperty Name="Documento" ColumnName="Documento" />
-                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
-                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
-                <ScalarProperty Name="Nacimiento" ColumnName="Nacimiento" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="LugarTrabajo" ColumnName="LugarTrabajo" />
-                <ScalarProperty Name="AntiguedadLaboral" ColumnName="AntiguedadLaboral" />
-                <ScalarProperty Name="DireccionLaboral" ColumnName="DireccionLaboral" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

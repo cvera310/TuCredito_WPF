@@ -21,7 +21,7 @@ namespace TuCredito_WPF
         public string Documento { get; set; }
         public int Sexo { get; set; }
         public string RazonSocial { get; set; }
-        public System.DateTime Nacimiento { get; set; }
+        public Nullable<System.DateTime> Nacimiento { get; set; }
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public string LugarTrabajo { get; set; }
