@@ -27,5 +27,8 @@ namespace TuCredito_WPF
         public string LugarTrabajo { get; set; }
         public int AntiguedadLaboral { get; set; }
         public string DireccionLaboral { get; set; }
+    
+        public virtual sexo sexo1 { get; set; }
+        public virtual TipoDeDocumento TipoDeDocumento { get; set; }
     }
 }

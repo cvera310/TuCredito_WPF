@@ -27,6 +27,14 @@
         <AssociationConnector Association="prestamoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="prestamoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="prestamoModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="prestamoModel.sexo" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="prestamoModel.TipoDeDocumento" Width="1.5" PointX="0.75" PointY="12.125" />
+        <AssociationConnector Association="prestamoModel.FK_Cliente_sexo" />
+        <AssociationConnector Association="prestamoModel.FK_Cliente_TipoDeDocumento" />
+        <EntityTypeShape EntityType="prestamoModel.Cargo" Width="1.5" PointX="12.375" PointY="3.875" />
+        <AssociationConnector Association="prestamoModel.FK_personal_Cargo" />
+        <AssociationConnector Association="prestamoModel.FK_personal_sexo" />
+        <AssociationConnector Association="prestamoModel.FK_personal_TipoDeDocumento" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="prestamoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="prestamoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -65,6 +65,13 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -203,6 +210,13 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.personal' no tiene definida nin
           <Property Name="predet_vencimiento" Type="date" Nullable="false" />
           <Property Name="predet_estado" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="sexo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'prestamo.dbo.Solicitud_Credito' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Solicitud_Credito">
@@ -228,6 +242,13 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.Solicitud_Credito' no tiene def
           <Property Name="tpre_descripcion" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="tpre_interes" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="TipoDeDocumento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="usuario">
@@ -241,6 +262,30 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="usu_nombrecompleto" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="usu_ultacceso" Type="datetime" />
         </EntityType>
+        <Association Name="FK_Cliente_sexo">
+          <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sexo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_TipoDeDocumento">
+          <End Role="TipoDeDocumento" Type="Self.TipoDeDocumento" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeDocumento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="TipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -297,6 +342,42 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_personal_Cargo">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+          <End Role="personal" Type="Self.personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personal">
+              <PropertyRef Name="Cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personal_sexo">
+          <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
+          <End Role="personal" Type="Self.personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sexo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personal">
+              <PropertyRef Name="Sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personal_TipoDeDocumento">
+          <End Role="TipoDeDocumento" Type="Self.TipoDeDocumento" Multiplicity="1" />
+          <End Role="personal" Type="Self.personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeDocumento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personal">
+              <PropertyRef Name="TipoDeDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="prestamoModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -304,6 +385,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cobranza" EntityType="Self.cobranza" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cobranza_cheque" EntityType="Self.cobranza_cheque" Schema="dbo" store:Type="Tables" />
@@ -314,7 +396,9 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <EntitySet Name="moneda" EntityType="Self.moneda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="prestamo" EntityType="Self.prestamo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="prestamo_detalle" EntityType="Self.prestamo_detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sexo" EntityType="Self.sexo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_prestamo" EntityType="Self.tipo_prestamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDeDocumento" EntityType="Self.TipoDeDocumento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="personal" EntityType="Self.personal" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [personal].[NumeroEmpleado] AS [NumeroEmpleado], 
@@ -347,6 +431,14 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
     [usuario].[usu_ultacceso] AS [usu_ultacceso]
     FROM [dbo].[usuario] AS [usuario]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Cliente_sexo" Association="Self.FK_Cliente_sexo">
+            <End Role="sexo" EntitySet="sexo" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_TipoDeDocumento" Association="Self.FK_Cliente_TipoDeDocumento">
+            <End Role="TipoDeDocumento" EntitySet="TipoDeDocumento" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -363,9 +455,20 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_personal_Cargo" Association="Self.FK_personal_Cargo">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="personal" EntitySet="personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personal_sexo" Association="Self.FK_personal_sexo">
+            <End Role="sexo" EntitySet="sexo" />
+            <End Role="personal" EntitySet="personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personal_TipoDeDocumento" Association="Self.FK_personal_TipoDeDocumento">
+            <End Role="TipoDeDocumento" EntitySet="TipoDeDocumento" />
+            <End Role="personal" EntitySet="personal" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="prestamoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -445,6 +548,8 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="LugarTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AntiguedadLaboral" Type="Int32" Nullable="false" />
           <Property Name="DireccionLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sexo1" Relationship="prestamoModel.FK_Cliente_sexo" FromRole="Cliente" ToRole="sexo" />
+          <NavigationProperty Name="TipoDeDocumento" Relationship="prestamoModel.FK_Cliente_TipoDeDocumento" FromRole="Cliente" ToRole="TipoDeDocumento" />
         </EntityType>
         <EntityType Name="cobranza">
           <Key>
@@ -570,6 +675,9 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TipoDeDocumento" Type="Int32" Nullable="false" />
           <Property Name="Sexo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cargo1" Relationship="prestamoModel.FK_personal_Cargo" FromRole="personal" ToRole="Cargo" />
+          <NavigationProperty Name="sexo1" Relationship="prestamoModel.FK_personal_sexo" FromRole="personal" ToRole="sexo" />
+          <NavigationProperty Name="TipoDeDocumento1" Relationship="prestamoModel.FK_personal_TipoDeDocumento" FromRole="personal" ToRole="TipoDeDocumento" />
         </EntityType>
         <EntityType Name="Solicitud_Credito">
           <Key>
@@ -661,7 +769,116 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="sexo" EntityType="prestamoModel.sexo" />
+          <EntitySet Name="TipoDeDocumento" EntityType="prestamoModel.TipoDeDocumento" />
+          <AssociationSet Name="FK_Cliente_sexo" Association="prestamoModel.FK_Cliente_sexo">
+            <End Role="sexo" EntitySet="sexo" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_TipoDeDocumento" Association="prestamoModel.FK_Cliente_TipoDeDocumento">
+            <End Role="TipoDeDocumento" EntitySet="TipoDeDocumento" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <EntitySet Name="Cargo" EntityType="prestamoModel.Cargo" />
+          <AssociationSet Name="FK_personal_Cargo" Association="prestamoModel.FK_personal_Cargo">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="personal" EntitySet="personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personal_sexo" Association="prestamoModel.FK_personal_sexo">
+            <End Role="sexo" EntitySet="sexo" />
+            <End Role="personal" EntitySet="personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personal_TipoDeDocumento" Association="prestamoModel.FK_personal_TipoDeDocumento">
+            <End Role="TipoDeDocumento" EntitySet="TipoDeDocumento" />
+            <End Role="personal" EntitySet="personal" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sexo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="prestamoModel.FK_Cliente_sexo" FromRole="sexo" ToRole="Cliente" />
+          <NavigationProperty Name="personal" Relationship="prestamoModel.FK_personal_sexo" FromRole="sexo" ToRole="personal" />
+        </EntityType>
+        <EntityType Name="TipoDeDocumento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="prestamoModel.FK_Cliente_TipoDeDocumento" FromRole="TipoDeDocumento" ToRole="Cliente" />
+          <NavigationProperty Name="personal" Relationship="prestamoModel.FK_personal_TipoDeDocumento" FromRole="TipoDeDocumento" ToRole="personal" />
+        </EntityType>
+        <Association Name="FK_Cliente_sexo">
+          <End Type="prestamoModel.sexo" Role="sexo" Multiplicity="1" />
+          <End Type="prestamoModel.Cliente" Role="Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sexo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_TipoDeDocumento">
+          <End Type="prestamoModel.TipoDeDocumento" Role="TipoDeDocumento" Multiplicity="1" />
+          <End Type="prestamoModel.Cliente" Role="Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeDocumento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="TipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personal" Relationship="prestamoModel.FK_personal_Cargo" FromRole="Cargo" ToRole="personal" />
+        </EntityType>
+        <Association Name="FK_personal_Cargo">
+          <End Type="prestamoModel.Cargo" Role="Cargo" Multiplicity="1" />
+          <End Type="prestamoModel.personal" Role="personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personal">
+              <PropertyRef Name="Cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personal_sexo">
+          <End Type="prestamoModel.sexo" Role="sexo" Multiplicity="1" />
+          <End Type="prestamoModel.personal" Role="personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sexo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personal">
+              <PropertyRef Name="Sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personal_TipoDeDocumento">
+          <End Type="prestamoModel.TipoDeDocumento" Role="TipoDeDocumento" Multiplicity="1" />
+          <End Type="prestamoModel.personal" Role="personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeDocumento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personal">
+              <PropertyRef Name="TipoDeDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -899,6 +1116,30 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="sexo">
+            <EntityTypeMapping TypeName="prestamoModel.sexo">
+              <MappingFragment StoreEntitySet="sexo">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDeDocumento">
+            <EntityTypeMapping TypeName="prestamoModel.TipoDeDocumento">
+              <MappingFragment StoreEntitySet="TipoDeDocumento">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargo">
+            <EntityTypeMapping TypeName="prestamoModel.Cargo">
+              <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

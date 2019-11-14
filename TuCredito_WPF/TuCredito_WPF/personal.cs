@@ -24,5 +24,9 @@ namespace TuCredito_WPF
         public string Direccion { get; set; }
         public int TipoDeDocumento { get; set; }
         public int Sexo { get; set; }
+    
+        public virtual Cargo Cargo1 { get; set; }
+        public virtual sexo sexo1 { get; set; }
+        public virtual TipoDeDocumento TipoDeDocumento1 { get; set; }
     }
 }

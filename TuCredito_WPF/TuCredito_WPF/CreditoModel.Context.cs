@@ -44,5 +44,8 @@ namespace TuCredito_WPF
         public virtual DbSet<personal> personal { get; set; }
         public virtual DbSet<Solicitud_Credito> Solicitud_Credito { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<sexo> sexo { get; set; }
+        public virtual DbSet<TipoDeDocumento> TipoDeDocumento { get; set; }
+        public virtual DbSet<Cargo> Cargo { get; set; }
     }
 }

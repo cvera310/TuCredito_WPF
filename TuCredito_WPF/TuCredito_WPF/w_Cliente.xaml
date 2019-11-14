@@ -41,8 +41,8 @@
             <Button x:Name="btnModificar" Content="Modificar" Click="BtnModificar_Click" Canvas.Left="143" Canvas.Top="378" Width="94"/>
             <Button x:Name="btnEliminar" Content="Eliminar" Click="BtnEliminar_Click" Canvas.Left="284" Canvas.Top="378" Width="93"/>
             <DatePicker Canvas.Left="120" Name="dtpNacimiento" Canvas.Top="279" Width="117"/>
-            <RadioButton x:Name="rbnCIP" Content="CIP" Canvas.Left="120" Canvas.Top="167"/>
-            <RadioButton x:Name="rbnPasaporte" Content="Pasaporte" Canvas.Left="201" Canvas.Top="167"/>
+            <CheckBox x:Name="chkCIP" Content="CIP" Canvas.Left="120" Canvas.Top="172"/>
+            <CheckBox x:Name="chkPasaporte" Content="Pasaporte" Canvas.Left="194" Canvas.Top="175"/>
 
 
         </Canvas>

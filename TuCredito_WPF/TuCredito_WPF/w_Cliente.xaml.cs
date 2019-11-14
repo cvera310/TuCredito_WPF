@@ -65,17 +65,17 @@ namespace TuCredito_WPF
                 c.Nombre = txtNombre.Text;
                 c.Apellido = txtApellido.Text;
 
-                if (rbnCIP.IsChecked == true)
+                if (chkCIP.IsChecked == true)
                     c.TipoDocumento = 1;
                 else
-                    c.TipoDocumento = 0;
+                    c.TipoDocumento = 2;
 
                 c.Documento = txtNroDoc.Text;
 
                 if (rbnHombre.IsChecked == true)
                     c.Sexo = 1;
                 else
-                    c.Sexo = 0;
+                    c.Sexo = 2;
 
                 c.RazonSocial = txtRazonSocial.Text;
                 c.Nacimiento = dtpNacimiento.SelectedDate.Value;
@@ -111,17 +111,17 @@ namespace TuCredito_WPF
                 c.Nombre = txtNombre.Text;
                 c.Apellido = txtApellido.Text;
 
-                if (rbnCIP.IsChecked == true)
+                if (chkCIP.IsChecked == true)
                     c.TipoDocumento = 1;
                 else
-                    c.TipoDocumento = 0;
+                    c.TipoDocumento = 2;
 
                 c.Documento = txtNroDoc.Text;
 
                 if (rbnHombre.IsChecked == true)
                     c.Sexo = 1;
                 else
-                    c.Sexo = 0;
+                    c.Sexo = 2;
 
                 c.RazonSocial = txtRazonSocial.Text;
                 c.Nacimiento = dtpNacimiento.SelectedDate.Value;
@@ -174,18 +174,21 @@ namespace TuCredito_WPF
                 txtNombre.Text = c.Nombre;
                 txtApellido.Text = c.Apellido;
 
-                if (c.TipoDocumento== 1 )
-                    rbnCIP.IsChecked = true;
-                else
-                    rbnPasaporte.IsChecked = true;
+                if (c.TipoDocumento== 1) { 
+                    chkCIP.IsChecked = true;
+                }
+                else { 
+                    chkPasaporte.IsChecked = true;
+                }
                 txtNroDoc.Text = c.Documento;
 
 
-                if (c.Sexo == 1)
+                if (c.Sexo == 1) { 
                     rbnHombre.IsChecked = true;
-                else
+                }
+                else { 
                     rbnMujer.IsChecked = true;
-
+                }
                 txtRazonSocial.Text = c.RazonSocial;
                 dtpNacimiento.SelectedDate = c.Nacimiento;
                
