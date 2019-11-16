@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:TuCredito_WPF"
         mc:Ignorable="d"
         Title="Personales" Height="716.259" Width="811.111" Loaded="Window_Loaded">
-    <GroupBox Header="Datos del Personal" Canvas.Left="10" Canvas.Top="15" Margin="10,10,23,364">
-        <Canvas Margin="0,0,0,-8">
+    <GroupBox Header="Datos del Personal" Canvas.Left="10" Canvas.Top="15" Margin="71,10,53,323">
+        <Canvas Margin="2,0,39,2">
             <Label x:Name="label0" Content="Cod. Empleado" Canvas.Left="27" Canvas.Top="34"/>
             <Label x:Name="label1" Content="Nombre" Canvas.Left="27" Canvas.Top="76"/>
             <Label x:Name="label2" Content="Apellido" Canvas.Left="27" Canvas.Top="114"/>
@@ -32,16 +32,14 @@
             <RadioButton x:Name="rdbFem" Content="Femenino" Canvas.Left="472" Canvas.Top="216" />
 
 
-            <GroupBox x:Name="groupBox" Header="GroupBox" Height="268" Canvas.Left="-2" Canvas.Top="348" Width="772" RenderTransformOrigin="0.501,0.024">
-                <DataGrid x:Name="dgPersonales" Height="201" MouseDoubleClick="DgPersonales_MouseDoubleClick" Margin="0,10,0,0" VerticalAlignment="Top" Width="706"/>
-            </GroupBox>
-            <Button x:Name="btnAgregar" Content="Agregar" Click="BtnAgregar_Click" Canvas.Left="109" Canvas.Top="296" Width="89"/>
-            <Button x:Name="btnModificar" Content="Modificar" Click="BtnModificar_Click" Canvas.Left="292" Canvas.Top="296" Width="94"/>
-            <Button x:Name="btnEliminar" Content="Eliminar" Click="BtnEliminar_Click" Canvas.Left="472" Canvas.Top="296" Width="93"/>
+            <Button x:Name="btnAgregar" Content="Agregar" Click="BtnAgregar_Click" Canvas.Left="88" Canvas.Top="260" Width="89"/>
+            <Button x:Name="btnModificar" Content="Modificar" Click="BtnModificar_Click" Canvas.Left="267" Canvas.Top="260" Width="94"/>
+            <Button x:Name="btnEliminar" Content="Eliminar" Click="BtnEliminar_Click" Canvas.Left="485" Canvas.Top="255" Width="93"/>
             <DatePicker Canvas.Left="472" Name="dtpNacimiento" Canvas.Top="27" Width="117"/>
 
-
-
+            <GroupBox x:Name="groupBox" Header="Listado de Personales" Height="268" Canvas.Left="-59" Canvas.Top="348" Width="759" RenderTransformOrigin="0.501,0.024">
+                <DataGrid x:Name="dgPersonales" Height="228" MouseDoubleClick="DgPersonales_MouseDoubleClick" Margin="10,10,-2,0" VerticalAlignment="Top" />
+            </GroupBox>
 
         </Canvas>
     </GroupBox>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="TuCredito_WPF.w_Solicitud_Credito"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TuCredito_WPF"
+        mc:Ignorable="d"
+        Title="Solicitudes de Credito" Height="480" Width="597.654" Loaded="Window_Loaded">
+    <Canvas RenderTransformOrigin="0.514,0.675" Margin="0,0,21,0" Height="422" VerticalAlignment="Bottom">
+        <GroupBox x:Name="groupbox" Header="Actualizacion de Solicitudes" Height="350" Width="554" RenderTransformOrigin="0.537,0.085" Canvas.Top="-14" Canvas.Left="15">
+            <DataGrid x:Name="dgSolicitudCredito" Height="317" MouseDoubleClick="dgSolicitudCredito_MouseDoubleClick"  Margin="0,10,-2,0" VerticalAlignment="Top"/>
+        </GroupBox>
+        <CheckBox x:Name="chkAprobado" Content="Aprobado" Canvas.Left="46" Canvas.Top="368"/>
+        <CheckBox x:Name="chkInformconf" Content="Informconf" Canvas.Left="46" Canvas.Top="348"/>
+
+        <Button x:Name="btnActualizar" Content="Actualizar" Click="btnActualizar_Click" Canvas.Left="452" Canvas.Top="360" Width="107"/>
+
+    </Canvas>
+</Window>

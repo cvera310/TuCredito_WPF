@@ -170,6 +170,9 @@
     <Compile Include="w_Personal.xaml.cs">
       <DependentUpon>w_Personal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="w_Solicitud_Credito.xaml.cs">
+      <DependentUpon>w_Solicitud_Credito.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -222,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="w_Personal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="w_Solicitud_Credito.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

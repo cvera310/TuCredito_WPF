@@ -41,16 +41,27 @@ namespace TuCredito_WPF
 
         void LimpiarPantalla()
         {
+            txtCod.Text = "";
             txtNombre.Text = "";
             txtApellido.Text = "";
             txtNroDoc.Text = "";
             txtTelefono.Text = "";
             txtDireccion.Text = "";
+            cboCargo.Text = "";
+            cboTipoDoc.Text= "";
+            rdbMas.IsChecked = false;
+            rdbFem.IsChecked = false;
+            dtpNacimiento.Text = "";
+
         }
 
         void CargarGrilla()
         {
             dgPersonales.ItemsSource = db.personal.ToList();
+           dgPersonales.Columns[10].Visibility = Visibility.Hidden;
+            dgPersonales.Columns[11].Visibility = Visibility.Hidden;
+            dgPersonales.Columns[12].Visibility = Visibility.Hidden;
+
         }
 
         private void DgPersonales_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -101,6 +112,7 @@ namespace TuCredito_WPF
                 db.personal.Add(p);
                 db.SaveChanges();
                 CargarGrilla();
+                LimpiarPantalla();
            
                 MessageBox.Show("Registro Agregado Correctamente");
             }
@@ -132,6 +144,8 @@ namespace TuCredito_WPF
                 db.Entry(p).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 CargarGrilla();
+                LimpiarPantalla();
+
             }
         }
 
@@ -145,7 +159,9 @@ namespace TuCredito_WPF
                     db.personal.Remove(p);
                     db.SaveChanges();
                     CargarGrilla();
-                     MessageBox.Show("Registro Eliminado Correctamente");
+                    LimpiarPantalla();
+
+                    MessageBox.Show("Registro Eliminado Correctamente");
                 }
             }
             catch (Exception err)
