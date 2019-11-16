@@ -13,10 +13,10 @@ namespace TuCredito_WPF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TPEntities : DbContext
+    public partial class TCEntities : DbContext
     {
-        public TPEntities()
-            : base("name=TPEntities")
+        public TCEntities()
+            : base("name=TCEntities")
         {
         }
     
@@ -44,6 +44,7 @@ namespace TuCredito_WPF
         public virtual DbSet<prestamo_detalle> prestamo_detalle { get; set; }
         public virtual DbSet<sexo> sexo { get; set; }
         public virtual DbSet<Solicitud_Credito> Solicitud_Credito { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tipo_prestamo> tipo_prestamo { get; set; }
         public virtual DbSet<TipoDeDocumento> TipoDeDocumento { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }

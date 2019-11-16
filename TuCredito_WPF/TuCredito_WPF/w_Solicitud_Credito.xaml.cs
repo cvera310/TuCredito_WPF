@@ -19,11 +19,11 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Solicitud_Credito : Window
     {
-        TFEntities db;
+        TCEntities db;
         public w_Solicitud_Credito()
         {
             InitializeComponent();
-            db = new TFEntities();
+            db = new TCEntities();
         }
 
         private void dgSolicitudCredito_MouseDoubleClick(object sender, MouseButtonEventArgs e)

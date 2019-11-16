@@ -19,14 +19,14 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Cliente : Window
     {
-        TPEntities db;
+        TCEntities db;
         //PrestamoEntities db;
         //CreditoEntities db;
         public w_Cliente()
         {
             InitializeComponent();
             //  db = new CreditoEntities();
-            db = new TPEntities();
+            db = new TCEntities();
             //db = new PrestamoEntities();
         }
 
@@ -136,6 +136,7 @@ namespace TuCredito_WPF
                 db.SaveChanges();
 
                 CargarGrilla();
+                LimpiarPantalla();
             }
         }
 
@@ -152,6 +153,7 @@ namespace TuCredito_WPF
                     db.SaveChanges();
 
                     CargarGrilla();
+                    LimpiarPantalla();
 
                     MessageBox.Show("Registro Eliminado Correctamente");
                 }

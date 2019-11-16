@@ -75,88 +75,91 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AspNetRoles.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaims.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogins.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUsers.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cargo.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cliente.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza_cheque.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza_detalle.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Comentario.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="forma_pago.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Informconf.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="moneda.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="personal.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="prestamo.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="prestamo_detalle.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sexo.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Solicitud_Credito.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TFModel.Context.cs">
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>TCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TCModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TFModel.Context.tt</DependentUpon>
+      <DependentUpon>TCModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TFModel.cs">
+    <Compile Include="TCModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TFModel.Designer.cs">
+    <Compile Include="TCModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TFModel.edmx</DependentUpon>
+      <DependentUpon>TCModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="TipoDeDocumento.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tipo_prestamo.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
+      <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="w_Cliente.xaml.cs">
       <DependentUpon>w_Cliente.xaml</DependentUpon>
@@ -194,12 +197,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="TFModel.edmx">
+    <EntityDeploy Include="TCModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TFModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TCModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="TFModel.edmx.diagram">
-      <DependentUpon>TFModel.edmx</DependentUpon>
+    <None Include="TCModel.edmx.diagram">
+      <DependentUpon>TCModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -231,15 +234,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TFModel.Context.tt">
+    <Content Include="TCModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TFModel.edmx</DependentUpon>
-      <LastGenOutput>TFModel.Context.cs</LastGenOutput>
+      <DependentUpon>TCModel.edmx</DependentUpon>
+      <LastGenOutput>TCModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TFModel.tt">
+    <Content Include="TCModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TFModel.edmx</DependentUpon>
-      <LastGenOutput>TFModel.cs</LastGenOutput>
+      <DependentUpon>TCModel.edmx</DependentUpon>
+      <LastGenOutput>TCModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -19,12 +19,12 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Moneda : Window
     {
-        TPEntities db;
+        TCEntities db;
 
         public w_Moneda()
         {
             InitializeComponent();
-            db = new TPEntities();
+            db = new TCEntities();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

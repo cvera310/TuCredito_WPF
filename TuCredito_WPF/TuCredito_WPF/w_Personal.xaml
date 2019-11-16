@@ -19,7 +19,7 @@
             <Label x:Name="label8" Content="Tipo Documento" Canvas.Left="326" Canvas.Top="151"/>
             <Label x:Name="label9" Content="Sexo" Canvas.Left="326" Canvas.Top="205" RenderTransformOrigin="1.057,3.423"/>
 
-            <TextBox x:Name="txtCod" Height="23" Canvas.Left="128" TextWrapping="Wrap" Text="" Canvas.Top="34" Width="120"></TextBox>
+            <TextBox x:Name="txtCod" Height="23" Canvas.Left="128" TextWrapping="Wrap" Text="" Canvas.Top="34" Width="120" IsReadOnly="True" ></TextBox>
             <TextBox x:Name="txtNombre" Height="23" Canvas.Left="128" TextWrapping="Wrap" Text="" Canvas.Top="76" Width="120"/>
             <TextBox x:Name="txtApellido" Height="23" Canvas.Left="128" TextWrapping="Wrap" Text="" Canvas.Top="114" Width="120"/>
             <TextBox x:Name="txtNroDoc" Height="23" Canvas.Left="128" TextWrapping="Wrap" Text="" Canvas.Top="154" Width="120" RenderTransformOrigin="0.5,-2.217"/>
