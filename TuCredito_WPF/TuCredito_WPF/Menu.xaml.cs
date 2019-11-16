@@ -23,5 +23,65 @@ namespace TuCredito_WPF
         {
             InitializeComponent();
         }
+
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+        }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //UserControl usc = null;
+            GridMain.Children.Clear();
+
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "ItemCliente":
+                    w_Cliente v_cliente = new w_Cliente();
+                    v_cliente.Owner = this;
+                    v_cliente.ShowDialog();
+                    break;
+                case "ItemPersonal":
+
+                    w_Personal v_personal = new w_Personal();
+                    v_personal.Owner = this;
+                    v_personal.ShowDialog();
+                    break;
+                case "ItemMoneda":
+                    w_Moneda v_moneda = new w_Moneda();
+                    v_moneda.Owner = this;
+                    v_moneda.ShowDialog();
+
+                   
+                    break;
+
+                case "ItemSolicitud":
+                    w_Solicitud_Credito v_solicitud = new w_Solicitud_Credito();
+                    v_solicitud.Owner = this;
+                    v_solicitud.ShowDialog();
+                    
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Desea que llamemos al 911?");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Batallando en c#");
+        }
     }
 }
