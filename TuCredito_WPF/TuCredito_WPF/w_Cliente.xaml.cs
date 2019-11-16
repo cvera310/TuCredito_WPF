@@ -19,14 +19,14 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Cliente : Window
     {
-        TFEntities db;
+        TPEntities db;
         //PrestamoEntities db;
         //CreditoEntities db;
         public w_Cliente()
         {
             InitializeComponent();
             //  db = new CreditoEntities();
-            db = new TFEntities();
+            db = new TPEntities();
             //db = new PrestamoEntities();
         }
 

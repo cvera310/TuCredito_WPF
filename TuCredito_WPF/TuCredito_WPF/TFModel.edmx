@@ -217,16 +217,6 @@
           <Property Name="Informconf" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="aprobado" Type="varchar" MaxLength="1" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="tipo_prestamo">
           <Key>
             <PropertyRef Name="tpre_codigo" />
@@ -404,7 +394,6 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <EntitySet Name="prestamo_detalle" EntityType="Self.prestamo_detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sexo" EntityType="Self.sexo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Solicitud_Credito" EntityType="Self.Solicitud_Credito" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_prestamo" EntityType="Self.tipo_prestamo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoDeDocumento" EntityType="Self.TipoDeDocumento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" store:Type="Tables" store:Schema="dbo">
@@ -681,16 +670,6 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="aprobado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Solicitud_Credito_Cliente" FromRole="Solicitud_Credito" ToRole="Cliente" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="tipo_prestamo">
           <Key>
             <PropertyRef Name="tpre_codigo" />
@@ -823,7 +802,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="TFEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
@@ -843,7 +822,6 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <EntitySet Name="prestamo_detalle" EntityType="Self.prestamo_detalle" />
           <EntitySet Name="sexo" EntityType="Self.sexo" />
           <EntitySet Name="Solicitud_Credito" EntityType="Self.Solicitud_Credito" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tipo_prestamo" EntityType="Self.tipo_prestamo" />
           <EntitySet Name="TipoDeDocumento" EntityType="Self.TipoDeDocumento" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
@@ -889,7 +867,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="prestamoModelStoreContainer" CdmEntityContainer="TFEntities">
+        <EntityContainerMapping StorageEntityContainer="prestamoModelStoreContainer" CdmEntityContainer="TPEntities">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="prestamoModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -1107,17 +1085,6 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
                 <ScalarProperty Name="TotalIngreso" ColumnName="TotalIngreso" />
                 <ScalarProperty Name="Informconf" ColumnName="Informconf" />
                 <ScalarProperty Name="aprobado" ColumnName="aprobado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="prestamoModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
