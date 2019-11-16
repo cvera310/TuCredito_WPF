@@ -161,6 +161,9 @@
     <Compile Include="w_Cliente.xaml.cs">
       <DependentUpon>w_Cliente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="w_Personal.xaml.cs">
+      <DependentUpon>w_Personal.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -205,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="w_Cliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="w_Personal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

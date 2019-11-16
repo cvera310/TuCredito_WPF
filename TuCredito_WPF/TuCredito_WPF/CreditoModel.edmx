@@ -157,20 +157,9 @@
           <Property Name="mon_descripcion" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="mon_pais" Type="varchar" MaxLength="30" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'prestamo.dbo.personal' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="personal">
           <Key>
             <PropertyRef Name="NumeroEmpleado" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Apellido" />
-            <PropertyRef Name="Documento" />
-            <PropertyRef Name="Cargo" />
-            <PropertyRef Name="FechaNac" />
-            <PropertyRef Name="Telefono" />
-            <PropertyRef Name="Direccion" />
-            <PropertyRef Name="TipoDeDocumento" />
-            <PropertyRef Name="Sexo" />
           </Key>
           <Property Name="NumeroEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
@@ -217,15 +206,9 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.personal' no tiene definida nin
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'prestamo.dbo.Solicitud_Credito' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Solicitud_Credito">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="NumeroCliente" />
-            <PropertyRef Name="TotalEgreso" />
-            <PropertyRef Name="TotalIngreso" />
-            <PropertyRef Name="Informconf" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NumeroCliente" Type="varchar" MaxLength="50" Nullable="false" />
@@ -394,35 +377,13 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <EntitySet Name="forma_pago" EntityType="Self.forma_pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Informconf" EntityType="Self.Informconf" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="moneda" EntityType="Self.moneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personal" EntityType="Self.personal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="prestamo" EntityType="Self.prestamo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="prestamo_detalle" EntityType="Self.prestamo_detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sexo" EntityType="Self.sexo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Solicitud_Credito" EntityType="Self.Solicitud_Credito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_prestamo" EntityType="Self.tipo_prestamo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoDeDocumento" EntityType="Self.TipoDeDocumento" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="personal" EntityType="Self.personal" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [personal].[NumeroEmpleado] AS [NumeroEmpleado], 
-    [personal].[Nombre] AS [Nombre], 
-    [personal].[Apellido] AS [Apellido], 
-    [personal].[Documento] AS [Documento], 
-    [personal].[Cargo] AS [Cargo], 
-    [personal].[FechaNac] AS [FechaNac], 
-    [personal].[Telefono] AS [Telefono], 
-    [personal].[Direccion] AS [Direccion], 
-    [personal].[TipoDeDocumento] AS [TipoDeDocumento], 
-    [personal].[Sexo] AS [Sexo]
-    FROM [dbo].[personal] AS [personal]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Solicitud_Credito" EntityType="Self.Solicitud_Credito" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Solicitud_Credito].[id] AS [id], 
-    [Solicitud_Credito].[NumeroCliente] AS [NumeroCliente], 
-    [Solicitud_Credito].[TotalEgreso] AS [TotalEgreso], 
-    [Solicitud_Credito].[TotalIngreso] AS [TotalIngreso], 
-    [Solicitud_Credito].[Informconf] AS [Informconf], 
-    [Solicitud_Credito].[aprobado] AS [aprobado]
-    FROM [dbo].[Solicitud_Credito] AS [Solicitud_Credito]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="usuario" EntityType="Self.usuario" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [usuario].[usu_codigo] AS [usu_codigo], 
