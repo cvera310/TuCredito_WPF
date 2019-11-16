@@ -19,9 +19,88 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Moneda : Window
     {
+        TPEntities db;
+
         public w_Moneda()
         {
             InitializeComponent();
+            db = new TPEntities();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            CargarGrilla();
+
+
+
+        }
+
+        void CargarGrilla()
+        {
+            dgMoneda.ItemsSource = db.moneda.ToList();
+
+
+
+        }
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                moneda m = new moneda();
+                m.mon_codigo = txtCodigo.Text;
+                m.mon_descripcion = txtDescripcion.Text;
+                m.mon_pais = txtPais.Text;
+
+                db.moneda.Add(m);
+                db.SaveChanges();
+                CargarGrilla();
+                LimpiarPantalla();
+            }
+            catch (Exception err ) 
+            {
+
+                MessageBox.Show(err.Message);
+            }
+
+            /*
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             */
+
+
+
+        }
+
+        void LimpiarPantalla()
+        {
+            txtCodigo.Text = "";
+            txtDescripcion.Text = "";
+            txtPais.Text = "";
+
         }
     }
 }

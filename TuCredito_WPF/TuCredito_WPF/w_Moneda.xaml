@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TuCredito_WPF"
         mc:Ignorable="d"
-        Title="Mantenimiento Moneda" Height="450" Width="800">
-    <Canvas>
-        
+        Title="Mantenimiento Moneda" Loaded="Window_Loaded" Height="756" Width="1174">
+    <Canvas Margin="0,0,0,22">
+        <GroupBox x:Name="groupBox" Header="Moneda" Height="582" Canvas.Left="10" Canvas.Top="10" Width="1114">
+            <Canvas>
+                <DataGrid x:Name="dgMoneda" Height="310" MouseDoubleClick="DataGrid_MouseDoubleClick" Canvas.Left="592" Canvas.Top="63" Width="378"/>
+                <Label x:Name="label" Content="Listado de Monedas Disponibles" Canvas.Left="592" Canvas.Top="25" Width="378" FontFamily="Arial Black" FontSize="20"/>
+                <Label x:Name="label1" Content="Codigo Moneda" Canvas.Left="22" Canvas.Top="100" FontFamily="Arial Black" FontSize="18"/>
+                <Label x:Name="label2" Content="Descripcion" Canvas.Left="22" Canvas.Top="250" FontFamily="Arial Black" FontSize="18"/>
+                <Label x:Name="label3" Content="Pais" Canvas.Left="46" Canvas.Top="409" FontFamily="Arial Black" FontSize="18"/>
+                <TextBox x:Name="txtCodigo" Height="23" Canvas.Left="273" TextWrapping="Wrap" Text="" Canvas.Top="108" Width="214"/>
+                <TextBox x:Name="txtDescripcion" Height="23" Canvas.Left="273" TextWrapping="Wrap" Text="" Canvas.Top="258" Width="214"/>
+                <TextBox x:Name="txtPais" Height="17" Canvas.Left="273" TextWrapping="Wrap" Text="" Canvas.Top="414" Width="214"/>
+
+            </Canvas>
+        </GroupBox>
+        <Button x:Name="btnAgregar" Content="Agregar" Click="BtnAgregar_Click" Canvas.Left="30" Canvas.Top="622" Width="143" Height="47"/>
     </Canvas>
 </Window>

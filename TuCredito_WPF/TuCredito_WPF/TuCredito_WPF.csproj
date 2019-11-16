@@ -134,9 +134,6 @@
     <Compile Include="Solicitud_Credito.cs">
       <DependentUpon>TFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>TFModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="TFModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -18,12 +18,12 @@ namespace TuCredito_WPF
     public partial class w_Personal : Window
 
     {
-        TFEntities db;
+        TPEntities db;
        // PrestamoEntities db;
         public w_Personal()
         {
             InitializeComponent();
-            db = new TFEntities();
+            db = new TPEntities();
             //db = new PrestamoEntities();
         }
 
