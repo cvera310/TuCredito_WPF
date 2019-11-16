@@ -13,10 +13,10 @@ namespace TuCredito_WPF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PrestamoEntities : DbContext
+    public partial class TFEntities : DbContext
     {
-        public PrestamoEntities()
-            : base("name=PrestamoEntities")
+        public TFEntities()
+            : base("name=TFEntities")
         {
         }
     
@@ -30,6 +30,7 @@ namespace TuCredito_WPF
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Cargo> Cargo { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<cobranza> cobranza { get; set; }
         public virtual DbSet<cobranza_cheque> cobranza_cheque { get; set; }
@@ -38,14 +39,14 @@ namespace TuCredito_WPF
         public virtual DbSet<forma_pago> forma_pago { get; set; }
         public virtual DbSet<Informconf> Informconf { get; set; }
         public virtual DbSet<moneda> moneda { get; set; }
+        public virtual DbSet<personal> personal { get; set; }
         public virtual DbSet<prestamo> prestamo { get; set; }
         public virtual DbSet<prestamo_detalle> prestamo_detalle { get; set; }
-        public virtual DbSet<tipo_prestamo> tipo_prestamo { get; set; }
-        public virtual DbSet<personal> personal { get; set; }
-        public virtual DbSet<Solicitud_Credito> Solicitud_Credito { get; set; }
-        public virtual DbSet<usuario> usuario { get; set; }
         public virtual DbSet<sexo> sexo { get; set; }
+        public virtual DbSet<Solicitud_Credito> Solicitud_Credito { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<tipo_prestamo> tipo_prestamo { get; set; }
         public virtual DbSet<TipoDeDocumento> TipoDeDocumento { get; set; }
-        public virtual DbSet<Cargo> Cargo { get; set; }
+        public virtual DbSet<usuario> usuario { get; set; }
     }
 }

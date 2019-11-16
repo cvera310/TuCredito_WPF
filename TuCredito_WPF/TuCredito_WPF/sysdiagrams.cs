@@ -12,15 +12,12 @@ namespace TuCredito_WPF
     using System;
     using System.Collections.Generic;
     
-    public partial class Solicitud_Credito
+    public partial class sysdiagrams
     {
-        public int id { get; set; }
-        public int NumeroCliente { get; set; }
-        public int TotalEgreso { get; set; }
-        public int TotalIngreso { get; set; }
-        public string Informconf { get; set; }
-        public string aprobado { get; set; }
-    
-        public virtual Cliente Cliente { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
