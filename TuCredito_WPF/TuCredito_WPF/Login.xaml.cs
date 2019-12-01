@@ -31,7 +31,40 @@ namespace TuCredito_WPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+          pruebaApi();
+
+
 
         }
+
+
+        private void pruebaApi()
+        {
+            try
+            {
+                HttpResponseMessage respuesta = client.GetAsync("api/Usuarios").Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("se consulto correctamente a la API");
+                }
+                else
+                {
+                    MessageBox.Show("Error Code" + respuesta.StatusCode + " : Message - " + respuesta.ReasonPhrase);
+                }
+            }
+            catch (Exception )
+            {
+
+                throw;
+            }
+
+            
+        }
+
+
+
+
+
     }
 }

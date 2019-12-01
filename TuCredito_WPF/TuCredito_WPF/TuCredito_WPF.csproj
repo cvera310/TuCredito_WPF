@@ -170,6 +170,7 @@
     <Compile Include="usuario.cs">
       <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Usuarios.cs" />
     <Compile Include="w_Cliente.xaml.cs">
       <DependentUpon>w_Cliente.xaml</DependentUpon>
     </Compile>
