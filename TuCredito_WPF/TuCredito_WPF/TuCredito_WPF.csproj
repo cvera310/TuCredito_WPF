@@ -110,6 +110,7 @@
     <Compile Include="Comentario.cs">
       <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="c_Informconf.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>

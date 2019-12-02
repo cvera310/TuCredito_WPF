@@ -32,14 +32,36 @@ namespace TuCredito_WPF
             //    new MediaTypeWithQualityHeaderValue("api/Cliente")); // It  tells the server to send data in JSON format.
         }
 
-        private void Btnprueba_Click(object sender, RoutedEventArgs e)
+        private async void Btnprueba_Click(object sender, RoutedEventArgs e)
         {
-            HttpResponseMessage respuesta = client.GetAsync("api/Cliente").Result;
+            //if (txtci.Text != null)
+            //{
+            //    //c_Informconf informconf = new c_Informconf();
+            //    //informconf.Documento = Convert.ToInt32(txtci.Text);
+
+            int informconf = Convert.ToInt32(txtci.Text);
+            //    try
+            //    {
+            //        if (await c_Informconf.VerificarInformconf(informconf))
+            //        {
+
+            //        }
+            //    }
+            //    catch (Exception)
+            //    {
+
+            //        throw;
+            //    }
+            //}
+
+
+            HttpResponseMessage respuesta = client.GetAsync("api/Informconfs/" + informconf).Result;
 
             if (respuesta.IsSuccessStatusCode)
             {
-                MessageBox.Show("se consulto correctamente a la API");
-            } else
+                MessageBox.Show("Usuario en informconf");
+            }
+            else
             {
                 MessageBox.Show("Error Code" + respuesta.StatusCode + " : Message - " + respuesta.ReasonPhrase);
             }
