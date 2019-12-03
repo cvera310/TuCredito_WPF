@@ -216,6 +216,8 @@
           <Property Name="TotalIngreso" Type="int" Nullable="false" />
           <Property Name="Informconf" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="aprobado" Type="varchar" MaxLength="1" />
+          <Property Name="MontoSolicitado" Type="int" />
+          <Property Name="MotivoPrestamo" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -679,6 +681,8 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="TotalIngreso" Type="Int32" Nullable="false" />
           <Property Name="Informconf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="aprobado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MontoSolicitado" Type="Int32" />
+          <Property Name="MotivoPrestamo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Solicitud_Credito_Cliente" FromRole="Solicitud_Credito" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -1107,6 +1111,8 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
                 <ScalarProperty Name="TotalIngreso" ColumnName="TotalIngreso" />
                 <ScalarProperty Name="Informconf" ColumnName="Informconf" />
                 <ScalarProperty Name="aprobado" ColumnName="aprobado" />
+                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+                <ScalarProperty Name="MotivoPrestamo" ColumnName="MotivoPrestamo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

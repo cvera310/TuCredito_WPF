@@ -20,6 +20,8 @@ namespace TuCredito_WPF
         public int TotalIngreso { get; set; }
         public string Informconf { get; set; }
         public string aprobado { get; set; }
+        public Nullable<int> MontoSolicitado { get; set; }
+        public string MotivoPrestamo { get; set; }
     
         public virtual Cliente Cliente { get; set; }
     }

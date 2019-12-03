@@ -20,6 +20,7 @@ namespace TuCredito_WPF
     public partial class w_Carga_SolicitudCredito : Window
     {
         TCEntities db;
+
         public w_Carga_SolicitudCredito()
         {
             InitializeComponent();
@@ -33,10 +34,10 @@ namespace TuCredito_WPF
 
 
             rdbCI.IsChecked = true;
-            txtIngresos.IsEnabled = false;
-            txtEgresos.IsEnabled = false;
-            txtMonto.IsEnabled = false;
-            txtMotivo.IsEnabled = false;
+            //txtIngresos.IsEnabled = false;
+            //txtEgresos.IsEnabled = false;
+            //txtMonto.IsEnabled = false;
+            //txtMotivo.IsEnabled = false;
             //solo mostrar datos del cliente
             txtNombre.IsEnabled = false;
             txtApellido.IsEnabled = false;
@@ -46,9 +47,24 @@ namespace TuCredito_WPF
             txtAntiguedad.IsEnabled = false;
         }
 
-        private void TxtCICliente_LostFocus(object sender, RoutedEventArgs e)
+        void TxtCICliente_LostFocus(object sender, RoutedEventArgs e)
         {
+            string NroDoc = txtCICliente.Text;
+            Cliente Cli = OtenerCliente(NroDoc);
+            if (Cli != null)
+            {
+                txtNombre.Text = Cli.Nombre;
+                txtApellido.Text = Cli.Apellido;
+                txtrazonSocial.Text = Cli.RazonSocial;
+                txtDirecion.Text = Cli.Direccion;
+                txtLugartrabajo.Text = Cli.LugarTrabajo;
+                txtAntiguedad.Text = Cli.AntiguedadLaboral.ToString();
+            }
+        }
 
+        private Cliente OtenerCliente(string Documento)
+        {
+            Cliente cli = null;
             List<Cliente> ListaClientes = new List<Cliente>();
             ListaClientes = db.Cliente.ToList();
             string documentoNro = txtCICliente.Text;
@@ -57,25 +73,20 @@ namespace TuCredito_WPF
             {
                 TipoDoc = 1;
 
-            }else
+            }
+            else
             {
                 TipoDoc = 2;
             }
-            //var client;
+
+
             try
             {
                 Cliente client = (Cliente)(from c in ListaClientes
                                            where (/*c.TipoDocumento == TipoDoc &&*/ c.Documento == documentoNro)
                                            select c).Single();
-                
-                txtNombre.Text = client.Nombre;
-                txtApellido.Text = client.Apellido;
-                txtrazonSocial.Text = client.RazonSocial;
-                txtDirecion.Text = client.Direccion;
-                txtLugartrabajo.Text = client.LugarTrabajo;
-                txtAntiguedad.Text = client.AntiguedadLaboral.ToString();
-                    
-                
+
+                cli = client;
             }
             catch (Exception)
             {
@@ -83,7 +94,30 @@ namespace TuCredito_WPF
                 MessageBox.Show("Cliente No existe");
             }
 
-            
+
+            return cli;
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            string NroDoc = txtCICliente.Text;
+            Cliente Cli = OtenerCliente(NroDoc);
+            if (Cli != null)
+            {
+                Solicitud_Credito sc = new Solicitud_Credito();
+                sc.Cliente = Cli;
+                sc.MontoSolicitado = Convert.ToInt32(txtMonto.Text);
+                sc.TotalIngreso = Convert.ToInt32(txtIngresos.Text);
+                sc.TotalEgreso = Convert.ToInt32(txtEgresos.Text);
+                sc.aprobado = "N";
+                sc.Informconf = "N";
+                db.Solicitud_Credito.Add(sc);
+                db.SaveChanges();
+
+            }
+
 
         }
     }

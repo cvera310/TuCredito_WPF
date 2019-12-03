@@ -30,7 +30,7 @@
 
 
         </Grid>
-        <Button Content="Agregar" Canvas.Left="42" Canvas.Top="346" Width="85" Height="35" />
+        <Button Content="Agregar" Canvas.Left="42" Canvas.Top="346" Width="85" Height="35" Click="Button_Click" />
         <StackPanel Canvas.Left="169"  Canvas.Top="99" Height="148" Width="132">
             <TextBox Name="txtCICliente" Height="23" TextWrapping="Wrap" Text=""  Width="120" LostFocus="TxtCICliente_LostFocus"/>
             <TextBox Name="txtIngresos" Height="27" TextWrapping="Wrap" Text=""  Width="120"/>
