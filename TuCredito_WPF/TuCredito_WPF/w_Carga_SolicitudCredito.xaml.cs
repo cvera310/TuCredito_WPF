@@ -19,16 +19,20 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Carga_SolicitudCredito : Window
     {
+        TCEntities db;
         public w_Carga_SolicitudCredito()
         {
             InitializeComponent();
+            db = new TCEntities();
+
         }
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
 
-
+            rdbCI.IsChecked = true;
             txtIngresos.IsEnabled = false;
             txtEgresos.IsEnabled = false;
             txtMonto.IsEnabled = false;
@@ -44,7 +48,43 @@ namespace TuCredito_WPF
 
         private void TxtCICliente_LostFocus(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Salio del foco");
+
+            List<Cliente> ListaClientes = new List<Cliente>();
+            ListaClientes = db.Cliente.ToList();
+            string documentoNro = txtCICliente.Text;
+            int TipoDoc;
+            if (rdbCI.IsChecked == true)
+            {
+                TipoDoc = 1;
+
+            }else
+            {
+                TipoDoc = 2;
+            }
+            //var client;
+            try
+            {
+                Cliente client = (Cliente)(from c in ListaClientes
+                                           where (/*c.TipoDocumento == TipoDoc &&*/ c.Documento == documentoNro)
+                                           select c).Single();
+                
+                txtNombre.Text = client.Nombre;
+                txtApellido.Text = client.Apellido;
+                txtrazonSocial.Text = client.RazonSocial;
+                txtDirecion.Text = client.Direccion;
+                txtLugartrabajo.Text = client.LugarTrabajo;
+                txtAntiguedad.Text = client.AntiguedadLaboral.ToString();
+                    
+                
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Cliente No existe");
+            }
+
+            
+
         }
     }
 }
