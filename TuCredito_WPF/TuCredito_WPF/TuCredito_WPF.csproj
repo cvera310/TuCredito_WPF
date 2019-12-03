@@ -178,6 +178,9 @@
     <Compile Include="w_Cliente.xaml.cs">
       <DependentUpon>w_Cliente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="w_Prestamo.xaml.cs">
+      <DependentUpon>w_Prestamo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="w_testAPI.xaml.cs">
       <DependentUpon>w_testAPI.xaml</DependentUpon>
     </Compile>
@@ -245,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="w_Cliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="w_Prestamo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
