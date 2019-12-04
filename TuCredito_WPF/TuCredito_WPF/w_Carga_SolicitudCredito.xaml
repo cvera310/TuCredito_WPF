@@ -46,7 +46,7 @@
             <Label x:Name="lblMotivo" Content="Motivo Préstamo" Height="27"   Width="120" />
 
         </StackPanel>
-        <Button Content="Boton2" Canvas.Left="488" Canvas.Top="309" Width="85" Height="35" />
+        <Button Content="Comprobar InformConf" Canvas.Left="488" Canvas.Top="309" Width="146" Height="35" Click="Button_Click_1" />
         <Button Content="Boton3" Canvas.Left="247" Canvas.Top="346" Width="85" Height="35" />
         <RadioButton Name="rdbCI" Content="CI" Canvas.Left="70" Canvas.Top="76"/>
         <RadioButton  Name="rdbpasaporte" Content="Pasaporte" Canvas.Left="119" Canvas.Top="76"/>

@@ -76,7 +76,7 @@ namespace TuCredito_WPF
                prestamo p = new prestamo();
                 p.pre_numero =Int32.Parse(txtNroPrestamo.Text);
                 p.pre_cliente = Int32.Parse(txtCliente.Text);
-                p.pre_tipoprestamo = (tipo_prestamo)cboTipoPrestamo.SelectedItem;
+                //p.pre_tipoprestamo = (tipo_prestamo)cboTipoPrestamo.SelectedItem;
 
 
                 MessageBox.Show("Registro Agregado Correctamente");
@@ -88,9 +88,10 @@ namespace TuCredito_WPF
 
         }
 
+        private void BtnModificar_Click(object sender, RoutedEventArgs e)
+        {
 
-
-
+        }
     }
     }
 
