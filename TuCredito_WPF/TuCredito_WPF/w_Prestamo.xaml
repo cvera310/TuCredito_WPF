@@ -23,7 +23,7 @@
             <TextBox x:Name="txtNroPrestamo" Height="23" Canvas.Left="135" TextWrapping="Wrap" Text="" Canvas.Top="34" Width="120" IsReadOnly="True" ></TextBox>
             <DatePicker Canvas.Left="436" Name="dtpFecha" Canvas.Top="27" Width="153"/>
 
-            <TextBox x:Name="txtCliente" Height="23" Canvas.Left="135" TextWrapping="Wrap" Text="" Canvas.Top="76" Width="120"/>
+            <TextBox x:Name="txtCliente" Height="23" Canvas.Left="135" TextWrapping="Wrap" Text="" Canvas.Top="76" Width="120" LostFocus="txtCliente_LostFocus"/>
             <ComboBox x:Name="cboTipoPrestamo" Canvas.Left="135" Canvas.Top="114" Width="120"/>
 
             <TextBox x:Name="txtMonSolicitado" Height="23" Canvas.Left="135" TextWrapping="Wrap" Text="" Canvas.Top="154" Width="120" RenderTransformOrigin="0.5,-2.217"/>
@@ -35,13 +35,13 @@
 
 
 
-            <Button x:Name="btnAgregar" Content="Agregar" Click="BtnAgregar_Click" Canvas.Left="88" Canvas.Top="260" Width="89"/>
-            <Button x:Name="btnModificar" Content="Modificar" Click="BtnModificar_Click" Canvas.Left="267" Canvas.Top="260" Width="94"/>
+            <Button x:Name="btnAgregar" Content="Agregar" Click="BtnAgregar_Click" Canvas.Left="489" Canvas.Top="193" Width="89"/>
 
 
-            <GroupBox x:Name="groupBox" Header="Listado de Prestamos" Height="268" Canvas.Left="-59" Canvas.Top="348" Width="748" RenderTransformOrigin="0.501,0.024">
-                <DataGrid x:Name="dgPrestamos" Height="228" MouseDoubleClick="DgPrestamos_MouseDoubleClick" Margin="10,10,-2,0" VerticalAlignment="Top" />
+            <GroupBox x:Name="groupBox" Header="Cuotas" Height="268" Canvas.Left="-59" Canvas.Top="348" Width="726" RenderTransformOrigin="0.501,0.024">
+                <DataGrid x:Name="dgPrestamos" Height="228" MouseDoubleClick="DgPrestamoDetalle_MouseDoubleClick" Margin="10,10,-2,0" VerticalAlignment="Top" />
             </GroupBox>
+            <Button x:Name="btnGenerarCuotas" Content="GenerarCuotas" Click="btnGenerarCuotas_Click" Canvas.Left="489" Canvas.Top="231" Width="89"/>
 
         </Canvas>
     </GroupBox>
