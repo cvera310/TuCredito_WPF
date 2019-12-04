@@ -95,6 +95,7 @@ namespace TuCredito_WPF
             {
 
                 MessageBox.Show("Cliente No existe");
+                LimpiarTodo();
             }
 
 
@@ -105,6 +106,21 @@ namespace TuCredito_WPF
         private void LimpiarTodo()
         {
 
+            txtCICliente.Text = "";
+            txtIngresos.Text = "";
+            txtEgresos.Text = "";
+            txtMonto.Text = "";
+            txtMotivo.Text = "";
+            rdbCI.IsChecked = true;
+
+
+
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtrazonSocial.Text = "";
+            txtDirecion.Text = "";
+            txtLugartrabajo.Text = "";
+            txtAntiguedad.Text = "";
 
 
 
@@ -121,20 +137,35 @@ namespace TuCredito_WPF
                 if (MessageBox.Show("¿Confirmar Solicitud?", "Confirmación de Solicitud", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
                 {
 
-                    Solicitud_Credito sc = new Solicitud_Credito();
-                    sc.Cliente = Cli;
-                    sc.MontoSolicitado = Convert.ToInt32(txtMonto.Text);
-                    sc.TotalIngreso = Convert.ToInt32(txtIngresos.Text);
-                    sc.TotalEgreso = Convert.ToInt32(txtEgresos.Text);
-                    sc.aprobado = "N";
-                    sc.Informconf = "N";
-                    db.Solicitud_Credito.Add(sc);
-                    db.SaveChanges();
+
+                    try
+                    {
+                        Solicitud_Credito sc = new Solicitud_Credito();
+                        sc.Cliente = Cli;
+                        sc.MontoSolicitado = Convert.ToInt32(txtMonto.Text);
+                        sc.TotalIngreso = Convert.ToInt32(txtIngresos.Text);
+                        sc.TotalEgreso = Convert.ToInt32(txtEgresos.Text);
+                        sc.MotivoPrestamo = txtMotivo.Text;
+                        sc.aprobado = "N";
+                        sc.Informconf = InformConfEstado;
+                        db.Solicitud_Credito.Add(sc);
+                        db.SaveChanges();
+                        MessageBox.Show("Solicitud cargada correctamente");
+                        LimpiarTodo();
+
+                    }
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show("Verifique los datos ingresados");
+                        LimpiarTodo();
+                    }
 
                 }
                 else
                 {
                     MessageBox.Show("Verifique los datos ingresados");
+                    
 
                 }
             }
@@ -174,13 +205,19 @@ namespace TuCredito_WPF
         private void BloquearForm()
         {
 
-
+            txtIngresos.IsEnabled = false;
+            txtEgresos.IsEnabled = false;
+            txtMonto.IsEnabled = false;
+            txtMotivo.IsEnabled = false;
 
         }
 
         private void DesbloquearForm()
         {
-
+            txtIngresos.IsEnabled = true;
+            txtEgresos.IsEnabled = true;
+            txtMonto.IsEnabled = true;
+            txtMotivo.IsEnabled = true;
 
         }
 
@@ -214,7 +251,8 @@ namespace TuCredito_WPF
             }
             else
             {
-                //si no tiene informconf
+                MessageBox.Show("Cliente limpio");
+                DesbloquearForm();
             }
 
 
