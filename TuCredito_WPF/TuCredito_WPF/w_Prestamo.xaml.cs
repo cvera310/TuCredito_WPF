@@ -66,7 +66,7 @@ namespace TuCredito_WPF
                 db.prestamo.Add(p);
                 db.SaveChanges();
                 LimpiarPantalla();
-                MessageBox.Show("Registro Agregado Correctamente");
+                MessageBox.Show("Registro Agregado Correctamente!");
             }
             catch (Exception err)
             {
