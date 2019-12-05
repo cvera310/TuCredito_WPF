@@ -83,7 +83,12 @@ namespace TuCredito_WPF
 
                     break;
 
+                case "ItemPruebaIA":
+                    PruebaIA v_IA = new PruebaIA();
+                    v_IA.Owner = this;
+                    v_IA.ShowDialog();
 
+                    break;
                 default:
                     break;
             }

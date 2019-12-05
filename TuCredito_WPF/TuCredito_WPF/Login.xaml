@@ -35,6 +35,6 @@
         </Grid>
         <Button Width="150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,65" Content="LOGIN" Click="Button_Click"/>
         <TextBlock Text="Olvido su contraseña?" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" Foreground="Gray" Cursor="Hand"/>
-        <Image Source="Assets/home.png" Width="100" Height="100" VerticalAlignment="Top" Margin="30"></Image>
+        <Image Source="Assets\home.png" Width="100" Height="100" VerticalAlignment="Top" Margin="30"></Image>
     </Grid>
 </Window>

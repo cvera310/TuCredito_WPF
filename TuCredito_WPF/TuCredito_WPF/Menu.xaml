@@ -123,6 +123,13 @@
 
                         </StackPanel>
                     </ListViewItem>
+                    <ListViewItem Height="60" x:Name="ItemPruebaIA">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ImageAlbum" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Procesar datos IA" VerticalAlignment="Center"  Margin="20 10"/>
+
+                        </StackPanel>
+                    </ListViewItem>
                 </ListView>
             </StackPanel>
         </Grid>

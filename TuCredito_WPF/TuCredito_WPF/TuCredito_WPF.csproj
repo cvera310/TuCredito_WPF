@@ -303,6 +303,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\home.png" />
+    <Resource Include="Assets\tucredito.png" />
     <Content Include="TuCreDitModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TuCreDitModel.edmx</DependentUpon>

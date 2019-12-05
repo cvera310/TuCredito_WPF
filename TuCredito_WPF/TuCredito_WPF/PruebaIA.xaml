@@ -15,8 +15,8 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-            <Button Height="50" Width="175" Name="GetImageButton" Click="GetImageButton_Click">Obtener Imagen</Button>
-            <Button Height="50" Width="175"  Name="GetText" Click="GetText_Click">Obtener Texto</Button>
+            <Button Height="50" Width="175" Name="GetImageButton" Click="GetImageButton_Click" FontFamily="Arial Black">Obtener Imagen</Button>
+            <Button Height="50" Width="175"  Name="GetText" Click="GetText_Click" FontFamily="Arial Black">Obtener Texto</Button>
             <TextBlock Name="OutputTextBlock"></TextBlock>
         </StackPanel>
         <Image Name="OCRImage" Grid.Row="0" Grid.Column="1"></Image>
