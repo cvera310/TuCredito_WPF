@@ -20,7 +20,8 @@
             <TextBlock Name="OutputTextBlock"></TextBlock>
         </StackPanel>
         <Image Name="OCRImage" Grid.Row="0" Grid.Column="1"></Image>
-        
+        <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Left" Height="135" Margin="374,10,-551,-26" VerticalAlignment="Top" Width="180"/>
+
 
     </Grid>
 </Window>

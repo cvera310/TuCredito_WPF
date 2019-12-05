@@ -145,6 +145,7 @@
     <Compile Include="prestamo.cs">
       <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PrestamoDetalle.cs" />
     <Compile Include="prestamo_detalle.cs">
       <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>

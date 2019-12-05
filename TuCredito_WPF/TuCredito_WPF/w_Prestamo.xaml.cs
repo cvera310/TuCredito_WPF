@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Prestamo : Window
     {
+        CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
         TuCreDitEntities db;
         public w_Prestamo()
         {
@@ -29,7 +31,7 @@ namespace TuCredito_WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarGrilla();
+            //CargarGrilla();
             cboMoneda.ItemsSource = db.moneda.ToList();
             cboMoneda.DisplayMemberPath = "mon_descripcion";
             cboMoneda.SelectedValuePath = "mon_codigo";
@@ -42,7 +44,8 @@ namespace TuCredito_WPF
 
         void CargarGrilla()
         {
-            dgPrestamos.ItemsSource = db.prestamo_detalle.ToList();
+            dgPrestamos.ItemsSource = null;
+            dgPrestamos.ItemsSource = PrestamoDetalle.ObtenerPrestamoDetalle(); /*db.prestamo_detalle.ToList();*/
 
         }
 
@@ -65,7 +68,7 @@ namespace TuCredito_WPF
 
                 db.prestamo.Add(p);
                 db.SaveChanges();
-                LimpiarPantalla();
+               // LimpiarPantalla();
                 MessageBox.Show("Registro Agregado Correctamente!");
             }
             catch (Exception err)
@@ -152,6 +155,37 @@ namespace TuCredito_WPF
 
         private void btnGenerarCuotas_Click(object sender, RoutedEventArgs e)
         {
+            double Total = 0;
+            int MontoSolicitado = Convert.ToInt32(txtMonSolicitado.Text.Replace(".", ""));
+            double Interes = Convert.ToDouble(txtInteres.Text);
+            double InteresGenerado = 0;
+            int CantCuota = Convert.ToInt32(txtCuotas.Text);
+            Double MontoCuota;
+            InteresGenerado = MontoSolicitado * (Interes / 100);
+            Total = MontoSolicitado + (MontoSolicitado * (Interes / 100));
+            MontoCuota = Math.Round((Total / CantCuota), 0);
+            txtInteresGenerado.Text = String.Format(elGR, "{0:0,0}", InteresGenerado);
+            Total = MontoCuota * CantCuota;
+            txtMonTotal.Text = String.Format(elGR, "{0:0,0}", Total);//FORMATEA EL MONTO TOTAL CON SEPARADOR DE MILES
+            //txtSaldo.Text = txtMontoTotal.Text;
+
+            for (int i = 0; i < CantCuota; i++)
+            {
+                PrestamoDetalle prestamoDetalle = new PrestamoDetalle();
+                prestamoDetalle.NroCuota = i;
+                prestamoDetalle.MontoDetalle = MontoCuota;
+                prestamoDetalle.SaldoDetalle = MontoCuota;
+                prestamoDetalle.estado = EstadoPrestamo.No_pagado;
+                //prestamoDetalle.Vencimiento = dtpFecha.Value.Date.AddMonths(i);
+                
+                // prestamo.ListaPrestamoDetalle.Add(prestamoDetalle);
+                PrestamoDetalle.Agregar(prestamoDetalle);
+
+            }
+
+            CargarGrilla();
+
+
 
         }
 
@@ -173,6 +207,13 @@ namespace TuCredito_WPF
         {
 
         }
+
+
+        private void AgregarPrestamo(prestamo p)
+        {
+
+        }
+
     }
     }
 
