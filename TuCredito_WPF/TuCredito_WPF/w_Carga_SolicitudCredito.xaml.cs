@@ -109,6 +109,7 @@ namespace TuCredito_WPF
 
                 MessageBox.Show("Cliente No existe");
                 LimpiarTodo();
+                BloquearForm();
             }
 
 
