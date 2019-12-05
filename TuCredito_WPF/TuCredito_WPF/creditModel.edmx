@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="prestamoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="creditModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -385,7 +385,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="prestamoModelStoreContainer">
+        <EntityContainer Name="creditModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -462,7 +462,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="prestamoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="creditModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -827,7 +827,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="TCEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="creditEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
@@ -893,9 +893,9 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="prestamoModelStoreContainer" CdmEntityContainer="TCEntities">
+        <EntityContainerMapping StorageEntityContainer="creditModelStoreContainer" CdmEntityContainer="creditEntities">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="prestamoModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="creditModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -905,7 +905,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="prestamoModel.AspNetRoles">
+            <EntityTypeMapping TypeName="creditModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -913,7 +913,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="prestamoModel.AspNetUserClaims">
+            <EntityTypeMapping TypeName="creditModel.AspNetUserClaims">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -923,7 +923,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="prestamoModel.AspNetUserLogins">
+            <EntityTypeMapping TypeName="creditModel.AspNetUserLogins">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -932,7 +932,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="prestamoModel.AspNetUsers">
+            <EntityTypeMapping TypeName="creditModel.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -950,7 +950,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cargo">
-            <EntityTypeMapping TypeName="prestamoModel.Cargo">
+            <EntityTypeMapping TypeName="creditModel.Cargo">
               <MappingFragment StoreEntitySet="Cargo">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -958,7 +958,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="prestamoModel.Cliente">
+            <EntityTypeMapping TypeName="creditModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -977,7 +977,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="cobranza">
-            <EntityTypeMapping TypeName="prestamoModel.cobranza">
+            <EntityTypeMapping TypeName="creditModel.cobranza">
               <MappingFragment StoreEntitySet="cobranza">
                 <ScalarProperty Name="cob_nro" ColumnName="cob_nro" />
                 <ScalarProperty Name="cob_fech" ColumnName="cob_fech" />
@@ -988,7 +988,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="cobranza_cheque">
-            <EntityTypeMapping TypeName="prestamoModel.cobranza_cheque">
+            <EntityTypeMapping TypeName="creditModel.cobranza_cheque">
               <MappingFragment StoreEntitySet="cobranza_cheque">
                 <ScalarProperty Name="cobcheque_codigo" ColumnName="cobcheque_codigo" />
                 <ScalarProperty Name="cobcheque_tipo" ColumnName="cobcheque_tipo" />
@@ -1000,7 +1000,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="cobranza_detalle">
-            <EntityTypeMapping TypeName="prestamoModel.cobranza_detalle">
+            <EntityTypeMapping TypeName="creditModel.cobranza_detalle">
               <MappingFragment StoreEntitySet="cobranza_detalle">
                 <ScalarProperty Name="cobdet_id" ColumnName="cobdet_id" />
                 <ScalarProperty Name="cobcab_nro" ColumnName="cobcab_nro" />
@@ -1011,7 +1011,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comentario">
-            <EntityTypeMapping TypeName="prestamoModel.Comentario">
+            <EntityTypeMapping TypeName="creditModel.Comentario">
               <MappingFragment StoreEntitySet="Comentario">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1021,7 +1021,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="forma_pago">
-            <EntityTypeMapping TypeName="prestamoModel.forma_pago">
+            <EntityTypeMapping TypeName="creditModel.forma_pago">
               <MappingFragment StoreEntitySet="forma_pago">
                 <ScalarProperty Name="fpa_codigo" ColumnName="fpa_codigo" />
                 <ScalarProperty Name="fpa_descripcion" ColumnName="fpa_descripcion" />
@@ -1029,7 +1029,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Informconf">
-            <EntityTypeMapping TypeName="prestamoModel.Informconf">
+            <EntityTypeMapping TypeName="creditModel.Informconf">
               <MappingFragment StoreEntitySet="Informconf">
                 <ScalarProperty Name="Documento" ColumnName="Documento" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1041,7 +1041,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="moneda">
-            <EntityTypeMapping TypeName="prestamoModel.moneda">
+            <EntityTypeMapping TypeName="creditModel.moneda">
               <MappingFragment StoreEntitySet="moneda">
                 <ScalarProperty Name="mon_codigo" ColumnName="mon_codigo" />
                 <ScalarProperty Name="mon_descripcion" ColumnName="mon_descripcion" />
@@ -1050,7 +1050,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="personal">
-            <EntityTypeMapping TypeName="prestamoModel.personal">
+            <EntityTypeMapping TypeName="creditModel.personal">
               <MappingFragment StoreEntitySet="personal">
                 <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1066,7 +1066,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="prestamo">
-            <EntityTypeMapping TypeName="prestamoModel.prestamo">
+            <EntityTypeMapping TypeName="creditModel.prestamo">
               <MappingFragment StoreEntitySet="prestamo">
                 <ScalarProperty Name="pre_numero" ColumnName="pre_numero" />
                 <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
@@ -1082,7 +1082,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="prestamo_detalle">
-            <EntityTypeMapping TypeName="prestamoModel.prestamo_detalle">
+            <EntityTypeMapping TypeName="creditModel.prestamo_detalle">
               <MappingFragment StoreEntitySet="prestamo_detalle">
                 <ScalarProperty Name="predet_id" ColumnName="predet_id" />
                 <ScalarProperty Name="predet_nrocabecera" ColumnName="predet_nrocabecera" />
@@ -1095,7 +1095,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sexo">
-            <EntityTypeMapping TypeName="prestamoModel.sexo">
+            <EntityTypeMapping TypeName="creditModel.sexo">
               <MappingFragment StoreEntitySet="sexo">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -1103,7 +1103,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Solicitud_Credito">
-            <EntityTypeMapping TypeName="prestamoModel.Solicitud_Credito">
+            <EntityTypeMapping TypeName="creditModel.Solicitud_Credito">
               <MappingFragment StoreEntitySet="Solicitud_Credito">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
@@ -1117,7 +1117,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="prestamoModel.sysdiagrams">
+            <EntityTypeMapping TypeName="creditModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1128,7 +1128,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tipo_prestamo">
-            <EntityTypeMapping TypeName="prestamoModel.tipo_prestamo">
+            <EntityTypeMapping TypeName="creditModel.tipo_prestamo">
               <MappingFragment StoreEntitySet="tipo_prestamo">
                 <ScalarProperty Name="tpre_codigo" ColumnName="tpre_codigo" />
                 <ScalarProperty Name="tpre_descripcion" ColumnName="tpre_descripcion" />
@@ -1137,7 +1137,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoDeDocumento">
-            <EntityTypeMapping TypeName="prestamoModel.TipoDeDocumento">
+            <EntityTypeMapping TypeName="creditModel.TipoDeDocumento">
               <MappingFragment StoreEntitySet="TipoDeDocumento">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -1145,7 +1145,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usuario">
-            <EntityTypeMapping TypeName="prestamoModel.usuario">
+            <EntityTypeMapping TypeName="creditModel.usuario">
               <MappingFragment StoreEntitySet="usuario">
                 <ScalarProperty Name="usu_codigo" ColumnName="usu_codigo" />
                 <ScalarProperty Name="usu_clave" ColumnName="usu_clave" />
@@ -1154,7 +1154,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="prestamoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="creditModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>

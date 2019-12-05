@@ -19,12 +19,12 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Carga_SolicitudCredito : Window
     {
-        TCEntities db;
+        creditEntities db;
 
         public w_Carga_SolicitudCredito()
         {
             InitializeComponent();
-            db = new TCEntities();
+            db = new creditEntities();
 
         }
 

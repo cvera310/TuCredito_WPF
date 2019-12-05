@@ -8,20 +8,20 @@
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Foreground="White"
-        Title="Menu" Height="450" Width="800">
+        Title="Menu" Height="616.5" Width="810.5">
     <Window.Resources>
-    <Storyboard x:Key="OpenMenu">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-            <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-    <Storyboard x:Key="CloseMenu">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-            <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
@@ -31,7 +31,8 @@
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid Background="#FFDEDEDE">
+    <Grid Background="#FFDEDEDE" >
+
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
         <Grid Height="60" VerticalAlignment="Top" Background="#FF5C99D6">
             <Grid.Effect>
@@ -42,7 +43,7 @@
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
                         <Button Content="Configuraciones"/>
-                       
+
                         <Button Content="Ayuda" Click="Button_Click"/>
                         <Separator/>
                         <Button Content="Acerca de.." Click="Button_Click_1"/>
@@ -77,7 +78,7 @@
                 <ListView x:Name="LsvMenu" Foreground="#FF5C99D6" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
                     <ListViewItem x:Name="ItemCliente" Height="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                            <materialDesign:PackIcon Kind="AccountAdd" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Editar Cliente" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
@@ -85,7 +86,7 @@
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Editar Personal" VerticalAlignment="Center" Margin="20 10"/>
-                         
+
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60" Name="ItemMoneda">
@@ -98,10 +99,35 @@
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CreditCard" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Lista Solicitud" VerticalAlignment="Center"  Margin="20 10"/>
+
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" x:Name="ItemCargaSolicitud">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FilterList" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Carga de Solicitud" VerticalAlignment="Center"  Margin="20 10"/>
+
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" x:Name="ItemCargaPrestamo">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CreditCardAdd" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Carga de Prestamo" VerticalAlignment="Center"  Margin="20 10"/>
+
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
             </StackPanel>
         </Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Source="Assets\tucredito.png" Height="318" Margin="196,146,0,0" VerticalAlignment="Top" Width="474"  >
+            <Image.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF664C4C" Offset="1"/>
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+
+
     </Grid>
 </Window>

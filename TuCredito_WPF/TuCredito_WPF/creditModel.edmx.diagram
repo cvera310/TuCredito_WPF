@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ede9b86e8b254f3c87ead8ddaaff72ad" Name="Diagram1">
+        <EntityTypeShape EntityType="creditModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.AspNetRoles" Width="1.5" PointX="8.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.AspNetUserClaims" Width="1.5" PointX="13.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.AspNetUserLogins" Width="1.5" PointX="13.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.AspNetUsers" Width="1.5" PointX="11" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.Cargo" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.Cliente" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.cobranza" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.cobranza_cheque" Width="1.5" PointX="8.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.cobranza_detalle" Width="1.5" PointX="7.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.Comentario" Width="1.5" PointX="9.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.forma_pago" Width="1.5" PointX="10.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.Informconf" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.moneda" Width="1.5" PointX="2.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.personal" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.prestamo" Width="1.5" PointX="4.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.prestamo_detalle" Width="1.5" PointX="11.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.sexo" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.Solicitud_Credito" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.sysdiagrams" Width="1.5" PointX="12.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.tipo_prestamo" Width="1.5" PointX="6.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.TipoDeDocumento" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditModel.usuario" Width="1.5" PointX="8.75" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="creditModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="creditModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="creditModel.FK_personal_Cargo" ManuallyRouted="false" />
+        <AssociationConnector Association="creditModel.FK_Cliente_sexo" ManuallyRouted="false" />
+        <AssociationConnector Association="creditModel.FK_Cliente_TipoDeDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="creditModel.FK_Solicitud_Credito_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="creditModel.FK_personal_sexo" ManuallyRouted="false" />
+        <AssociationConnector Association="creditModel.FK_personal_TipoDeDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="creditModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -23,6 +23,10 @@ namespace TuCredito_WPF
     {
         HttpClient client = new HttpClient();
 
+        static string subscriptionKey = Environment.GetEnvironmentVariable("0d8a60b23e9b4441b748d01c93c8a88f");
+        static string endpoint = Environment.GetEnvironmentVariable("https://pruebaiavision.cognitiveservices.azure.com/");
+
+
         public w_Login()
         {
             InitializeComponent();

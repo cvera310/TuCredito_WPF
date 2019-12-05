@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,15 +62,27 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.ComputerVision.5.0.0\lib\net452\Microsoft.Azure.CognitiveServices.Vision.ComputerVision.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.18\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime.Azure, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.Azure.3.3.18\lib\net452\Microsoft.Rest.ClientRuntime.Azure.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -81,44 +108,59 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AspNetRoles.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaims.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogins.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUsers.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cargo.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cliente.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza_cheque.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza_detalle.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Comentario.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creditModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>creditModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creditModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>creditModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creditModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>creditModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="c_Informconf.cs" />
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="forma_pago.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Informconf.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -127,49 +169,38 @@
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="moneda.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OCRServices.cs" />
     <Compile Include="personal.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="prestamo.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="prestamo_detalle.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PruebaIA.xaml.cs">
+      <DependentUpon>PruebaIA.xaml</DependentUpon>
     </Compile>
     <Compile Include="sexo.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Solicitud_Credito.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCModel.edmx</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoDeDocumento.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tipo_prestamo.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>creditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs" />
     <Compile Include="w_Carga_SolicitudCredito.xaml.cs">
@@ -177,9 +208,6 @@
     </Compile>
     <Compile Include="w_Cliente.xaml.cs">
       <DependentUpon>w_Cliente.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="w_Prestamo.xaml.cs">
-      <DependentUpon>w_Prestamo.xaml</DependentUpon>
     </Compile>
     <Compile Include="w_testAPI.xaml.cs">
       <DependentUpon>w_testAPI.xaml</DependentUpon>
@@ -215,17 +243,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="creditModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>creditModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="creditModel.edmx.diagram">
+      <DependentUpon>creditModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <EntityDeploy Include="TCModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TCModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="TCModel.edmx.diagram">
-      <DependentUpon>TCModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -243,15 +271,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PruebaIA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="w_Carga_SolicitudCredito.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="w_Cliente.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="w_Prestamo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,15 +305,27 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TCModel.Context.tt">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="creditModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TCModel.edmx</DependentUpon>
-      <LastGenOutput>TCModel.Context.cs</LastGenOutput>
+      <DependentUpon>creditModel.edmx</DependentUpon>
+      <LastGenOutput>creditModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TCModel.tt">
+    <Content Include="creditModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TCModel.edmx</DependentUpon>
-      <LastGenOutput>TCModel.cs</LastGenOutput>
+      <DependentUpon>creditModel.edmx</DependentUpon>
+      <LastGenOutput>creditModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

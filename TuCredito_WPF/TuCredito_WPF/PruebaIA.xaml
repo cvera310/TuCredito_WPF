@@ -1,0 +1,26 @@
+﻿<Window x:Class="TuCredito_WPF.PruebaIA"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TuCredito_WPF"
+        mc:Ignorable="d"
+        Title="PruebaIA" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+            <Button Height="50" Width="175" Name="GetImageButton" Click="GetImageButton_Click">Obtener Imagen</Button>
+            <Button Height="50" Width="175"  Name="GetText" Click="GetText_Click">Obtener Texto</Button>
+            <TextBlock Name="OutputTextBlock"></TextBlock>
+        </StackPanel>
+        <Image Name="OCRImage" Grid.Row="0" Grid.Column="1"></Image>
+        
+
+    </Grid>
+</Window>
