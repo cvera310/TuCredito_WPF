@@ -83,7 +83,7 @@ namespace TuCredito_WPF
                     p.moneda = sc1.moneda;
                     p.pre_fecha = (DateTime)dtpFecha.SelectedDate;
                     p.pre_montosolicitado = Convert.ToInt32(txtMonSolicitado.Text);
-                    p.pre_montototal = /*Convert.ToInt32(txtMonTotal.Text);*/ 108;
+                    p.pre_montototal = Convert.ToInt32(txtMonTotal.Text); 
                     p.tipo_prestamo = (tipo_prestamo)cmbTipo.SelectedItem;
                     p.pre_cantcuota = Convert.ToInt32(txtCuotas.Text);
                     p.pre_interes = Convert.ToInt32(txtInteres.Text);
@@ -210,8 +210,8 @@ namespace TuCredito_WPF
                 MontoCuota = Math.Round((Total / CantCuota), 0);
                 txtInteresGenerado.Text = String.Format(elGR, "{0:0,0}", InteresGenerado);
                 Total = MontoCuota * CantCuota;
-                txtMonTotal.Text = String.Format(elGR, "{0:0,0}", Total);//FORMATEA EL MONTO TOTAL CON SEPARADOR DE MILES
-                                                                         //txtSaldo.Text = txtMontoTotal.Text;
+               // txtMonTotal.Text = String.Format(elGR, "{0:0,0}", Total);//FORMATEA EL MONTO TOTAL CON SEPARADOR DE MILES
+                txtMonTotal.Text = Convert.ToString(Total);                                                        //txtSaldo.Text = txtMontoTotal.Text;
 
                 for (int i = 0; i < CantCuota; i++)
                 {
@@ -220,7 +220,7 @@ namespace TuCredito_WPF
                     prestamoDetalle.MontoDetalle = MontoCuota;
                     prestamoDetalle.SaldoDetalle = MontoCuota;
                     prestamoDetalle.estado = EstadoPrestamo.No_pagado;
-                    //prestamoDetalle.Vencimiento = dtpFecha.Value.Date.AddMonths(i);
+                    prestamoDetalle.Vencimiento = dtpFecha.SelectedDate.Value.AddMonths(i);
 
                     // prestamo.ListaPrestamoDetalle.Add(prestamoDetalle);
                     PrestamoDetalle.Agregar(prestamoDetalle);
