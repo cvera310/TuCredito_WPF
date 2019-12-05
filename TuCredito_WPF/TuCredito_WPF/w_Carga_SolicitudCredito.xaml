@@ -31,25 +31,32 @@
 
         </Grid>
         <Button Content="Agregar" Canvas.Left="42" Canvas.Top="346" Width="85" Height="35" Click="Button_Click" />
-        <StackPanel Canvas.Left="169"  Canvas.Top="99" Height="148" Width="132">
+        <StackPanel Canvas.Left="169"  Canvas.Top="99" Height="188" Width="132">
+            <ComboBox Name="cboTipoDoc" Canvas.Left="56" Canvas.Top="71" Width="120"/>
             <TextBox Name="txtCICliente" Height="23" TextWrapping="Wrap" Text=""  Width="120" LostFocus="TxtCICliente_LostFocus"/>
             <TextBox Name="txtIngresos" Height="27" TextWrapping="Wrap" Text=""  Width="120"/>
             <TextBox Name="txtEgresos" Height="27" TextWrapping="Wrap" Text=""  Width="120"/>
             <TextBox Name="txtMonto" Height="27" TextWrapping="Wrap" Text=""  Width="120"/>
             <TextBox Name="txtMotivo" Height="27" TextWrapping="Wrap" Text=""  Width="120"/>
+            <ComboBox Name="cboMoneda" Canvas.Left="87" Canvas.Top="301" Width="120"/>
+           
+
+
         </StackPanel>
-        <StackPanel Canvas.Left="70"  Canvas.Top="99" Height="148" Width="99">
-            <Label x:Name="lblCICliente" Content="C.I. Cliente" Height="23"   Width="120" />
+        <StackPanel Canvas.Left="56"  Canvas.Top="99" Height="188" Width="113">
+            <Label x:Name="lblTipoDoc" Content="Tipo Documento" Height="27"   Width="120" />
+            <Label x:Name="lblCICliente" Content="Nro. Doc Cliente" Height="23"   Width="120" />
             <Label x:Name="lblTotalIngreso" Content="Total Ingresos" Height="27"   Width="120" Margin="0,0,-21,0" />
             <Label x:Name="lblTotalEgreso" Content="Total Egrseos" Height="27"   Width="120" Margin="0,0,-21,0" />
             <Label x:Name="lblMonto" Content="Monto Solicitado" Height="27"   Width="120" />
             <Label x:Name="lblMotivo" Content="Motivo Préstamo" Height="27"   Width="120" />
+            <Label x:Name="lblMoneda" Content="Moneda Préstamo" Height="27"   Width="120" />
 
         </StackPanel>
         <Button Content="Comprobar InformConf" Canvas.Left="488" Canvas.Top="309" Width="146" Height="35" Click="Button_Click_1" />
         <Button Content="Cancelar" Canvas.Left="216" Canvas.Top="346" Width="85" Height="35" Click="Button_Click_2" />
-        <RadioButton Name="rdbCI" Content="CI" Canvas.Left="70" Canvas.Top="76"/>
-        <RadioButton  Name="rdbpasaporte" Content="Pasaporte" Canvas.Left="119" Canvas.Top="76"/>
+        
+
 
 
 

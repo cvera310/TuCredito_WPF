@@ -188,6 +188,9 @@
     <Compile Include="w_AprobarSolicitud.xaml.cs">
       <DependentUpon>w_AprobarSolicitud.xaml</DependentUpon>
     </Compile>
+    <Compile Include="w_CargaPrestamo.xaml.cs">
+      <DependentUpon>w_CargaPrestamo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="w_Carga_SolicitudCredito.xaml.cs">
       <DependentUpon>w_Carga_SolicitudCredito.xaml</DependentUpon>
     </Compile>
@@ -269,6 +272,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="w_CargaPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="w_Carga_SolicitudCredito.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -305,6 +312,8 @@
   <ItemGroup>
     <Resource Include="Assets\home.png" />
     <Resource Include="Assets\tucredito.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="TuCreDitModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TuCreDitModel.edmx</DependentUpon>
