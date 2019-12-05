@@ -31,7 +31,7 @@ namespace TuCredito_WPF
         {
             InitializeComponent();
 
-            client.BaseAddress = new Uri("http://localhost:56798/");
+            client.BaseAddress = new Uri("https://tucreditoazure.azurewebsites.net/");
             //client.DefaultRequestHeaders.Accept.Add(
             //    new MediaTypeWithQualityHeaderValue("api/Cliente")); // It  tells the server to send data in JSON format.
         }

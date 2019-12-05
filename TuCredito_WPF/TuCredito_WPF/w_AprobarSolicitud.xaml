@@ -1,0 +1,33 @@
+﻿<Window x:Class="TuCredito_WPF.w_AprobarSolicitud"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TuCredito_WPF"
+        mc:Ignorable="d"
+        Title="w_AprobarSolicitud" Height="450" Width="800" Loaded="Window_Loaded">
+    <Canvas>
+        <DataGrid x:Name="dgSolicitudes" Canvas.Left="25" Canvas.Top="46" Height="265" Width="746" AutoGenerateColumns="False"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Num." Binding="{Binding id}"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Cliente.Nombre}"/>
+                <DataGridTextColumn Header="Apellido" Binding="{Binding Cliente.Apellido}"/>
+                <DataGridTextColumn Header="Ingresos" Binding="{Binding TotalIngreso}"/>
+                <DataGridTextColumn Header="Egresos" Binding="{Binding TotalEgreso}"/>
+                <DataGridTextColumn Header="Monto Solicitado" Binding="{Binding MontoSolicitado}"/>
+                <DataGridTextColumn Header="Motivo" Binding="{Binding MotivoPrestamo}"/>
+                <DataGridTextColumn Header="InformConf" Binding="{Binding Informconf}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="btnAprobar" Content="Aprobar" Canvas.Left="57" Canvas.Top="336" Width="118" Height="48" Click="BtnAprobar_Click" Foreground="Green"/>
+        <Button Name="btnRechazar" Content="Rechazar" Canvas.Left="234" Canvas.Top="336" Width="118" Height="48" Click="BtnRechazar_Click" Foreground="Red" />
+
+
+
+
+
+
+
+    </Canvas>
+</Window>
