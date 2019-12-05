@@ -14,8 +14,17 @@ namespace TuCredito_WPF
     
     public partial class tipo_prestamo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tipo_prestamo()
+        {
+            this.prestamo = new HashSet<prestamo>();
+        }
+    
         public string tpre_codigo { get; set; }
         public string tpre_descripcion { get; set; }
         public int tpre_interes { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<prestamo> prestamo { get; set; }
     }
 }

@@ -179,13 +179,12 @@
           <Property Name="pre_numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="pre_fecha" Type="date" Nullable="false" />
           <Property Name="pre_cliente" Type="int" Nullable="false" />
-          <Property Name="pre_tipoprestamo" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="pre_montosolicitado" Type="int" Nullable="false" />
-          <Property Name="pre_moneda" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="pre_cantcuota" Type="int" Nullable="false" />
           <Property Name="pre_interes" Type="int" Nullable="false" />
           <Property Name="pre_montototal" Type="int" Nullable="false" />
-          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="pre_tipoprestamo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="pre_moneda" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="prestamo_detalle">
           <Key>
@@ -258,6 +257,18 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="usu_nombrecompleto" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="usu_ultacceso" Type="datetime" />
         </EntityType>
+        <Association Name="FK_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="NumeroCliente" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="pre_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cliente_sexo">
           <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
@@ -350,6 +361,18 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_moneda2">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="mon_codigo" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="pre_moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_personal_Cargo">
           <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
           <End Role="personal" Type="Self.personal" Multiplicity="*" />
@@ -398,6 +421,18 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tipopre">
+          <End Role="tipo_prestamo" Type="Self.tipo_prestamo" Multiplicity="1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_prestamo">
+              <PropertyRef Name="tpre_codigo" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="pre_tipoprestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="prestamoModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -430,6 +465,10 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
     [usuario].[usu_ultacceso] AS [usu_ultacceso]
     FROM [dbo].[usuario] AS [usuario]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Cliente" Association="Self.FK_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="prestamo" EntitySet="prestamo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cliente_sexo" Association="Self.FK_Cliente_sexo">
             <End Role="sexo" EntitySet="sexo" />
             <End Role="Cliente" EntitySet="Cliente" />
@@ -458,6 +497,10 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             <End Role="moneda" EntitySet="moneda" />
             <End Role="Solicitud_Credito" EntitySet="Solicitud_Credito" />
           </AssociationSet>
+          <AssociationSet Name="FK_moneda2" Association="Self.FK_moneda2">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="prestamo" EntitySet="prestamo" />
+          </AssociationSet>
           <AssociationSet Name="FK_personal_Cargo" Association="Self.FK_personal_Cargo">
             <End Role="Cargo" EntitySet="Cargo" />
             <End Role="personal" EntitySet="personal" />
@@ -473,6 +516,10 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <AssociationSet Name="FK_Solicitud_Credito_Cliente" Association="Self.FK_Solicitud_Credito_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Solicitud_Credito" EntitySet="Solicitud_Credito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipopre" Association="Self.FK_tipopre">
+            <End Role="tipo_prestamo" EntitySet="tipo_prestamo" />
+            <End Role="prestamo" EntitySet="prestamo" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -564,6 +611,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="LugarTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AntiguedadLaboral" Type="Int32" Nullable="false" />
           <Property Name="DireccionLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="prestamo" Relationship="Self.FK_Cliente" FromRole="Cliente" ToRole="prestamo" />
           <NavigationProperty Name="sexo1" Relationship="Self.FK_Cliente_sexo" FromRole="Cliente" ToRole="sexo" />
           <NavigationProperty Name="TipoDeDocumento" Relationship="Self.FK_Cliente_TipoDeDocumento" FromRole="Cliente" ToRole="TipoDeDocumento" />
           <NavigationProperty Name="Solicitud_Credito" Relationship="Self.FK_Solicitud_Credito_Cliente" FromRole="Cliente" ToRole="Solicitud_Credito" />
@@ -634,6 +682,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="mon_descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="mon_pais" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Solicitud_Credito" Relationship="Self.FK_moneda" FromRole="moneda" ToRole="Solicitud_Credito" />
+          <NavigationProperty Name="prestamo" Relationship="Self.FK_moneda2" FromRole="moneda" ToRole="prestamo" />
         </EntityType>
         <EntityType Name="personal">
           <Key>
@@ -660,13 +709,15 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="pre_numero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="pre_fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="pre_cliente" Type="Int32" Nullable="false" />
-          <Property Name="pre_tipoprestamo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pre_montosolicitado" Type="Int32" Nullable="false" />
-          <Property Name="pre_moneda" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pre_cantcuota" Type="Int32" Nullable="false" />
           <Property Name="pre_interes" Type="Int32" Nullable="false" />
           <Property Name="pre_montototal" Type="Int32" Nullable="false" />
-          <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pre_tipoprestamo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pre_moneda" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente" FromRole="prestamo" ToRole="Cliente" />
+          <NavigationProperty Name="moneda" Relationship="Self.FK_moneda2" FromRole="prestamo" ToRole="moneda" />
+          <NavigationProperty Name="tipo_prestamo" Relationship="Self.FK_tipopre" FromRole="prestamo" ToRole="tipo_prestamo" />
         </EntityType>
         <EntityType Name="prestamo_detalle">
           <Key>
@@ -722,6 +773,7 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <Property Name="tpre_codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tpre_descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tpre_interes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="prestamo" Relationship="Self.FK_tipopre" FromRole="tipo_prestamo" ToRole="prestamo" />
         </EntityType>
         <EntityType Name="TipoDeDocumento">
           <Key>
@@ -783,6 +835,18 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="NumeroCliente" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="pre_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cliente_sexo">
           <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
@@ -831,6 +895,18 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_moneda2">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="mon_codigo" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="pre_moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_personal_sexo">
           <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
           <End Role="personal" Type="Self.personal" Multiplicity="*" />
@@ -852,6 +928,18 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             </Principal>
             <Dependent Role="personal">
               <PropertyRef Name="TipoDeDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipopre">
+          <End Role="tipo_prestamo" Type="Self.tipo_prestamo" Multiplicity="1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_prestamo">
+              <PropertyRef Name="tpre_codigo" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="pre_tipoprestamo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -895,6 +983,10 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             <End Role="Cargo" EntitySet="Cargo" />
             <End Role="personal" EntitySet="personal" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cliente" Association="Self.FK_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="prestamo" EntitySet="prestamo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cliente_sexo" Association="Self.FK_Cliente_sexo">
             <End Role="sexo" EntitySet="sexo" />
             <End Role="Cliente" EntitySet="Cliente" />
@@ -911,6 +1003,10 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
             <End Role="moneda" EntitySet="moneda" />
             <End Role="Solicitud_Credito" EntitySet="Solicitud_Credito" />
           </AssociationSet>
+          <AssociationSet Name="FK_moneda2" Association="Self.FK_moneda2">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="prestamo" EntitySet="prestamo" />
+          </AssociationSet>
           <AssociationSet Name="FK_personal_sexo" Association="Self.FK_personal_sexo">
             <End Role="sexo" EntitySet="sexo" />
             <End Role="personal" EntitySet="personal" />
@@ -918,6 +1014,10 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
           <AssociationSet Name="FK_personal_TipoDeDocumento" Association="Self.FK_personal_TipoDeDocumento">
             <End Role="TipoDeDocumento" EntitySet="TipoDeDocumento" />
             <End Role="personal" EntitySet="personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipopre" Association="Self.FK_tipopre">
+            <End Role="tipo_prestamo" EntitySet="tipo_prestamo" />
+            <End Role="prestamo" EntitySet="prestamo" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -1107,13 +1207,12 @@ advertencia 6002: La tabla o vista 'prestamo.dbo.usuario' no tiene definida ning
                 <ScalarProperty Name="pre_numero" ColumnName="pre_numero" />
                 <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
                 <ScalarProperty Name="pre_cliente" ColumnName="pre_cliente" />
-                <ScalarProperty Name="pre_tipoprestamo" ColumnName="pre_tipoprestamo" />
                 <ScalarProperty Name="pre_montosolicitado" ColumnName="pre_montosolicitado" />
-                <ScalarProperty Name="pre_moneda" ColumnName="pre_moneda" />
                 <ScalarProperty Name="pre_cantcuota" ColumnName="pre_cantcuota" />
                 <ScalarProperty Name="pre_interes" ColumnName="pre_interes" />
                 <ScalarProperty Name="pre_montototal" ColumnName="pre_montototal" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="pre_tipoprestamo" ColumnName="pre_tipoprestamo" />
+                <ScalarProperty Name="pre_moneda" ColumnName="pre_moneda" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

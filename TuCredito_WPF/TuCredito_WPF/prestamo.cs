@@ -17,12 +17,15 @@ namespace TuCredito_WPF
         public int pre_numero { get; set; }
         public System.DateTime pre_fecha { get; set; }
         public int pre_cliente { get; set; }
-        public string pre_tipoprestamo { get; set; }
         public int pre_montosolicitado { get; set; }
-        public string pre_moneda { get; set; }
         public int pre_cantcuota { get; set; }
         public int pre_interes { get; set; }
         public int pre_montototal { get; set; }
-        public string usuario { get; set; }
+        public string pre_tipoprestamo { get; set; }
+        public string pre_moneda { get; set; }
+    
+        public virtual Cliente Cliente { get; set; }
+        public virtual moneda moneda { get; set; }
+        public virtual tipo_prestamo tipo_prestamo { get; set; }
     }
 }

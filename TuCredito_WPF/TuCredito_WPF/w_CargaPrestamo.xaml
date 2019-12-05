@@ -10,7 +10,7 @@
 
         <StackPanel Canvas.Left="169"  Canvas.Top="99" Height="188" Width="132">
             <ComboBox Name="cboTipoDoc" Canvas.Left="56" Canvas.Top="71" Width="120"/>
-            <TextBox Name="txtCICliente" Height="23" TextWrapping="Wrap" Text=""  Width="120" LostFocus="TxtCICliente_LostFocus"/>
+            <TextBox Name="txtCICliente" Height="23" TextWrapping="Wrap" Text=""  Width="120" />
             <TextBox Name="txtIngresos" Height="27" TextWrapping="Wrap" Text=""  Width="120"/>
             <TextBox Name="txtEgresos" Height="27" TextWrapping="Wrap" Text=""  Width="120"/>
             <TextBox Name="txtMonto" Height="27" TextWrapping="Wrap" Text=""  Width="120"/>

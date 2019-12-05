@@ -17,6 +17,7 @@ namespace TuCredito_WPF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cliente()
         {
+            this.prestamo = new HashSet<prestamo>();
             this.Solicitud_Credito = new HashSet<Solicitud_Credito>();
         }
     
@@ -34,6 +35,8 @@ namespace TuCredito_WPF
         public int AntiguedadLaboral { get; set; }
         public string DireccionLaboral { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<prestamo> prestamo { get; set; }
         public virtual sexo sexo1 { get; set; }
         public virtual TipoDeDocumento TipoDeDocumento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

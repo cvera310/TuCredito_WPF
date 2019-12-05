@@ -22,6 +22,7 @@ namespace TuCredito_WPF
     {
         CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
         TuCreDitEntities db;
+        bool grillado = false;
         public w_Prestamo()
         {
             InitializeComponent();
@@ -31,18 +32,36 @@ namespace TuCredito_WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //CargarGrilla();
-            cboMoneda.ItemsSource = db.moneda.ToList();
-            cboMoneda.DisplayMemberPath = "mon_descripcion";
-            cboMoneda.SelectedValuePath = "mon_codigo";
+            CargarGrilla();
 
-            cboTipoPrestamo.ItemsSource = db.tipo_prestamo.ToList();
-            cboTipoPrestamo.DisplayMemberPath = "tpre_descripcion";
-            cboTipoPrestamo.SelectedValuePath = "tpre_codigo";
+        }
+
+        private void CargarGrilla()
+        {
+
+            try
+            {
+                List<Solicitud_Credito> solicitudes = new List<Solicitud_Credito>();
+                solicitudes = db.Solicitud_Credito.ToList();
+                dgSolicitudes.ItemsSource = (from s in solicitudes where s.aprobado == "S" select s).ToList();
+                cmbTipo.ItemsSource = db.tipo_prestamo.ToList();
+                cmbTipo.DisplayMemberPath = "tpre_descripcion";
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Problema de RED al cargar los datos, la red no anda, todo es culpa de la red... dude, trust me");
+            }
+
+
+
+
         }
 
 
-        void CargarGrilla()
+
+        void CargarGrilla2()
         {
             dgPrestamos.ItemsSource = null;
             dgPrestamos.ItemsSource = PrestamoDetalle.ObtenerPrestamoDetalle(); /*db.prestamo_detalle.ToList();*/
@@ -50,26 +69,47 @@ namespace TuCredito_WPF
         }
 
 
+
+
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                prestamo p = new prestamo();
-                // p.pre_numero = Int32.Parse(txtNroPrestamo.Text);
-                p.pre_cliente = Int32.Parse(txtCliente.Text);
-                p.pre_tipoprestamo = cboTipoPrestamo.SelectedValue.ToString();
-                p.pre_fecha = dtpFecha.SelectedDate.Value;
-                p.pre_montosolicitado = Int32.Parse(txtMonSolicitado.Text);
-                p.pre_montototal = Int32.Parse(txtMonTotal.Text);
-                p.pre_interes = Int32.Parse(txtInteres.Text);
-                p.pre_moneda = cboMoneda.SelectedValue.ToString();
-                p.pre_cantcuota = Int32.Parse(txtCuotas.Text);
-                p.usuario = "admin";
+                if (grillado == true)
+                {
+                    prestamo p = new prestamo();
+                    Solicitud_Credito sc1 = (Solicitud_Credito)dgSolicitudes.SelectedItem;
+                    p.Cliente = sc1.Cliente;
+                    p.moneda = sc1.moneda;
+                    p.pre_fecha = (DateTime)dtpFecha.SelectedDate;
+                    p.pre_montosolicitado = Convert.ToInt32(txtMonSolicitado.Text);
+                    p.pre_montototal = /*Convert.ToInt32(txtMonTotal.Text);*/ 108;
+                    p.tipo_prestamo = (tipo_prestamo)cmbTipo.SelectedItem;
+                    p.pre_cantcuota = Convert.ToInt32(txtCuotas.Text);
+                    p.pre_interes = Convert.ToInt32(txtInteres.Text);
+                    db.prestamo.Add(p);
+                    db.SaveChanges();
 
-                db.prestamo.Add(p);
-                db.SaveChanges();
-               // LimpiarPantalla();
-                MessageBox.Show("Registro Agregado Correctamente!");
+
+
+
+
+
+
+
+                    MessageBox.Show("Registro Agregado Correctamente!");
+
+                }
+                else
+                {
+                    MessageBox.Show("Debe generar las cuotas");
+
+                }
+
+
+
+
+                
             }
             catch (Exception err)
             {
@@ -100,26 +140,26 @@ namespace TuCredito_WPF
 
         private void txtCliente_LostFocus(object sender, RoutedEventArgs e)
         {
-            string NroDoc = txtCliente.Text;
+            /*string NroDoc = txtCliente.Text;
             Cliente Cli = ObtenerCliente(NroDoc);
             if (Cli != null)
             {
-                
+
                 MessageBox.Show("Cliente existe");
-            }
+            }*/
         }
 
 
-        private Cliente ObtenerCliente(string Documento)
+       /*/ private Cliente ObtenerCliente(string Documento)
         {
-            Cliente cli = null;
+           /* Cliente cli = null;
             List<Cliente> ListaClientes = new List<Cliente>();
             ListaClientes = db.Cliente.ToList();
             string documentoNro = txtCliente.Text;
             try
             {
                 Cliente client = (Cliente)(from c in ListaClientes
-                                           where (/*c.TipoDocumento == TipoDoc &&*/ c.Documento == documentoNro)
+                                           where (/*c.TipoDocumento == TipoDoc && c.Documento == documentoNro)
                                            select c).Single();
 
                 cli = client;
@@ -132,11 +172,11 @@ namespace TuCredito_WPF
 
             return cli;
 
-        }
+        }*/
 
 
 
-        private Solicitud_Credito ObtenerClienteMonto(int Monto)
+        /*private Solicitud_Credito ObtenerClienteMonto(int Monto)
         {
             Solicitud_Credito sc = null;
             List<Solicitud_Credito> ListaSolicitudes = new List<Solicitud_Credito>();
@@ -144,47 +184,58 @@ namespace TuCredito_WPF
             int MontoSolicitado = Convert.ToInt32(txtMonSolicitado.Text);
 
             Solicitud_Credito solicitud = (Solicitud_Credito)(from s in ListaSolicitudes
-                                                           where (/*c.TipoDocumento == TipoDoc &&*/ s.MontoSolicitado == MontoSolicitado)
-                                       select s).Single();
+                                                              where (/*c.TipoDocumento == TipoDoc && s.MontoSolicitado == MontoSolicitado)
+                                                              select s).Single();
             sc = solicitud;
 
             return sc;
 
-        }
+        }*/
 
 
         private void btnGenerarCuotas_Click(object sender, RoutedEventArgs e)
         {
-            double Total = 0;
-            int MontoSolicitado = Convert.ToInt32(txtMonSolicitado.Text.Replace(".", ""));
-            double Interes = Convert.ToDouble(txtInteres.Text);
-            double InteresGenerado = 0;
-            int CantCuota = Convert.ToInt32(txtCuotas.Text);
-            Double MontoCuota;
-            InteresGenerado = MontoSolicitado * (Interes / 100);
-            Total = MontoSolicitado + (MontoSolicitado * (Interes / 100));
-            MontoCuota = Math.Round((Total / CantCuota), 0);
-            txtInteresGenerado.Text = String.Format(elGR, "{0:0,0}", InteresGenerado);
-            Total = MontoCuota * CantCuota;
-            txtMonTotal.Text = String.Format(elGR, "{0:0,0}", Total);//FORMATEA EL MONTO TOTAL CON SEPARADOR DE MILES
-            //txtSaldo.Text = txtMontoTotal.Text;
 
-            for (int i = 0; i < CantCuota; i++)
+            try
             {
-                PrestamoDetalle prestamoDetalle = new PrestamoDetalle();
-                prestamoDetalle.NroCuota = i;
-                prestamoDetalle.MontoDetalle = MontoCuota;
-                prestamoDetalle.SaldoDetalle = MontoCuota;
-                prestamoDetalle.estado = EstadoPrestamo.No_pagado;
-                //prestamoDetalle.Vencimiento = dtpFecha.Value.Date.AddMonths(i);
-                
-                // prestamo.ListaPrestamoDetalle.Add(prestamoDetalle);
-                PrestamoDetalle.Agregar(prestamoDetalle);
+
+                double Total = 0;
+                int MontoSolicitado = Convert.ToInt32(txtMonSolicitado.Text.Replace(".", ""));
+                double Interes = Convert.ToDouble(txtInteres.Text);
+                double InteresGenerado = 0;
+                int CantCuota = Convert.ToInt32(txtCuotas.Text);
+                Double MontoCuota;
+                InteresGenerado = MontoSolicitado * (Interes / 100);
+                Total = MontoSolicitado + (MontoSolicitado * (Interes / 100));
+                MontoCuota = Math.Round((Total / CantCuota), 0);
+                txtInteresGenerado.Text = String.Format(elGR, "{0:0,0}", InteresGenerado);
+                Total = MontoCuota * CantCuota;
+                txtMonTotal.Text = String.Format(elGR, "{0:0,0}", Total);//FORMATEA EL MONTO TOTAL CON SEPARADOR DE MILES
+                                                                         //txtSaldo.Text = txtMontoTotal.Text;
+
+                for (int i = 0; i < CantCuota; i++)
+                {
+                    PrestamoDetalle prestamoDetalle = new PrestamoDetalle();
+                    prestamoDetalle.NroCuota = i;
+                    prestamoDetalle.MontoDetalle = MontoCuota;
+                    prestamoDetalle.SaldoDetalle = MontoCuota;
+                    prestamoDetalle.estado = EstadoPrestamo.No_pagado;
+                    //prestamoDetalle.Vencimiento = dtpFecha.Value.Date.AddMonths(i);
+
+                    // prestamo.ListaPrestamoDetalle.Add(prestamoDetalle);
+                    PrestamoDetalle.Agregar(prestamoDetalle);
+
+                }
+
+                CargarGrilla2();
+                grillado = true;
+
 
             }
-
-            CargarGrilla();
-
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
 
 
         }
@@ -192,19 +243,25 @@ namespace TuCredito_WPF
 
         void LimpiarPantalla()
         {
-            txtNroPrestamo.Text = "";
-            txtCliente.Text = "";
-            cboTipoPrestamo.SelectedItem = false;
-            txtMonSolicitado.Text = "";
-            txtMonTotal.Text = "";
-            txtCuotas.Text = "";
-            dtpFecha.Text = "";
-            cboMoneda.SelectedItem = false;
-            txtInteres.Text = "";
+            
         }
 
         private void DgPrestamoDetalle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (dgPrestamos.SelectedItem != null)
+            {
+                /*prestamo P = (prestamo)dgPrestamos.SelectedItem;
+                txtnombre.Text = P.Cliente.Nombre;
+                txtApellido.Text = P.Cliente.Apellido;*/
+                //codigo de cvera
+                
+                
+
+
+
+            }
+
+
 
         }
 
@@ -214,6 +271,39 @@ namespace TuCredito_WPF
 
         }
 
+        private void DgSolicitudes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (dgSolicitudes.SelectedItem != null)
+            {
+                /*prestamo P = (prestamo)dgPrestamos.SelectedItem;
+                txtnombre.Text = P.Cliente.Nombre;
+                txtApellido.Text = P.Cliente.Apellido;*/
+                //codigo de cvera
+                Solicitud_Credito sc1 = (Solicitud_Credito)dgSolicitudes.SelectedItem;
+                txtnombre.Text = sc1.Cliente.Nombre;
+                txtApellido.Text = sc1.Cliente.Apellido;
+                txtMonSolicitado.Text = sc1.MontoSolicitado.ToString();
+                txtMoneda.Text = sc1.moneda.mon_descripcion;
+
+
+
+
+
+            }
+
+
+        }
+
+        private void CmbTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            tipo_prestamo TP = (tipo_prestamo)cmbTipo.SelectedItem;
+            txtInteres.Text = TP.tpre_interes.ToString();
+
+
+
+        }
     }
-    }
+}
 

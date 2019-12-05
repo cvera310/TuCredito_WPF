@@ -18,6 +18,7 @@ namespace TuCredito_WPF
         public moneda()
         {
             this.Solicitud_Credito = new HashSet<Solicitud_Credito>();
+            this.prestamo = new HashSet<prestamo>();
         }
     
         public string mon_codigo { get; set; }
@@ -26,5 +27,7 @@ namespace TuCredito_WPF
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Solicitud_Credito> Solicitud_Credito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<prestamo> prestamo { get; set; }
     }
 }
