@@ -37,7 +37,7 @@ namespace TuCredito_WPF
         {
 
 
-            rdbCI.IsChecked = true;
+            //rdbCI.IsChecked = true;
             BloquearForm();
             //txtIngresos.IsEnabled = false;
             //txtEgresos.IsEnabled = false;
@@ -50,7 +50,12 @@ namespace TuCredito_WPF
             txtDirecion.IsEnabled = false;
             txtLugartrabajo.IsEnabled = false;
             txtAntiguedad.IsEnabled = false;
-           // lblAntiguedad.Foreground = new SolidColorBrush(Colors.Red);
+            // lblAntiguedad.Foreground = new SolidColorBrush(Colors.Red);
+            cboMoneda.ItemsSource = db.moneda.ToList();
+            cboMoneda.DisplayMemberPath = "mon_descripcion";
+            cboTipoDoc.ItemsSource = db.TipoDeDocumento.ToList();
+            cboTipoDoc.DisplayMemberPath = "Descripcion";
+
         }
 
         void TxtCICliente_LostFocus(object sender, RoutedEventArgs e)
@@ -84,22 +89,11 @@ namespace TuCredito_WPF
             }
 
             string documentoNro = txtCICliente.Text;
-            int TipoDoc;
-            if (rdbCI.IsChecked == true)
-            {
-                TipoDoc = 1;
-
-            }
-            else
-            {
-                TipoDoc = 2;
-            }
-
 
             try
             {
                 Cliente client = (Cliente)(from c in ListaClientes
-                                           where (/*c.TipoDocumento == TipoDoc &&*/ c.Documento == documentoNro)
+                                           where (c.TipoDeDocumento== cboTipoDoc.SelectedItem && c.Documento == documentoNro)
                                            select c).Single();
 
                 cli = client;
@@ -125,7 +119,7 @@ namespace TuCredito_WPF
             txtEgresos.Text = "";
             txtMonto.Text = "";
             txtMotivo.Text = "";
-            rdbCI.IsChecked = true;
+            //rdbCI.IsChecked = true;
 
 
 
@@ -148,6 +142,8 @@ namespace TuCredito_WPF
             txtDirecion.Foreground = new SolidColorBrush(Colors.Black);
             txtLugartrabajo.Foreground = new SolidColorBrush(Colors.Black);
             txtAntiguedad.Foreground = new SolidColorBrush(Colors.Black);
+            cboTipoDoc.SelectedItem = null;
+            cboMoneda.SelectedItem = null;
 
 
 
@@ -175,6 +171,7 @@ namespace TuCredito_WPF
                         sc.MotivoPrestamo = txtMotivo.Text;
                         sc.aprobado = "N";
                         sc.Informconf = InformConfEstado;
+                        sc.moneda = (moneda)cboMoneda.SelectedItem;
                         db.Solicitud_Credito.Add(sc);
                         db.SaveChanges();
                         MessageBox.Show("Solicitud cargada correctamente");
@@ -236,6 +233,7 @@ namespace TuCredito_WPF
             txtEgresos.IsEnabled = false;
             txtMonto.IsEnabled = false;
             txtMotivo.IsEnabled = false;
+            cboMoneda.IsEnabled = false;
 
         }
 
@@ -245,6 +243,7 @@ namespace TuCredito_WPF
             txtEgresos.IsEnabled = true;
             txtMonto.IsEnabled = true;
             txtMotivo.IsEnabled = true;
+            cboMoneda.IsEnabled = true;
 
         }
 
@@ -283,6 +282,7 @@ namespace TuCredito_WPF
                     {
                         //si se le da a cancelar
                         LimpiarTodo();
+                        BloquearForm();
 
                     }
                 }
@@ -298,6 +298,7 @@ namespace TuCredito_WPF
 
                 MessageBox.Show("Verifique los datos ingresados");
                 LimpiarTodo();
+                BloquearForm();
             }
 
 

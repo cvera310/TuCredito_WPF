@@ -22,7 +22,9 @@ namespace TuCredito_WPF
         public string aprobado { get; set; }
         public Nullable<int> MontoSolicitado { get; set; }
         public string MotivoPrestamo { get; set; }
+        public string mon_codigo { get; set; }
     
         public virtual Cliente Cliente { get; set; }
+        public virtual moneda moneda { get; set; }
     }
 }

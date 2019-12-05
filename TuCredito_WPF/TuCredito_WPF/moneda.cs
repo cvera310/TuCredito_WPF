@@ -14,8 +14,17 @@ namespace TuCredito_WPF
     
     public partial class moneda
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public moneda()
+        {
+            this.Solicitud_Credito = new HashSet<Solicitud_Credito>();
+        }
+    
         public string mon_codigo { get; set; }
         public string mon_descripcion { get; set; }
         public string mon_pais { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Solicitud_Credito> Solicitud_Credito { get; set; }
     }
 }

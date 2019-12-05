@@ -15,6 +15,7 @@
                 <DataGridTextColumn Header="Ingresos" Binding="{Binding TotalIngreso}"/>
                 <DataGridTextColumn Header="Egresos" Binding="{Binding TotalEgreso}"/>
                 <DataGridTextColumn Header="Monto Solicitado" Binding="{Binding MontoSolicitado}"/>
+                <DataGridTextColumn Header="Moneda" Binding="{Binding moneda.mon_descripcion}"/>
                 <DataGridTextColumn Header="Motivo" Binding="{Binding MotivoPrestamo}"/>
                 <DataGridTextColumn Header="InformConf" Binding="{Binding Informconf}"/>
 
