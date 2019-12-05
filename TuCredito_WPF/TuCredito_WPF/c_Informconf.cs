@@ -19,7 +19,7 @@ namespace TuCredito_WPF
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44375/");
+                client.BaseAddress = new Uri("https://tucreditoazure.azurewebsites.net/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

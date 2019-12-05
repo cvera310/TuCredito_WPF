@@ -63,11 +63,26 @@ namespace TuCredito_WPF
                     break;
 
                 case "ItemSolicitud":
-                    w_Solicitud_Credito v_solicitud = new w_Solicitud_Credito();
+                    w_AprobarSolicitud v_solicitud = new w_AprobarSolicitud();
                     v_solicitud.Owner = this;
                     v_solicitud.ShowDialog();
                     
                     break;
+
+                case "ItemCargaSolicitud":
+                    w_Carga_SolicitudCredito v_solicitudC = new w_Carga_SolicitudCredito();
+                    v_solicitudC.Owner = this;
+                    v_solicitudC.ShowDialog();
+
+                    break;
+
+                case "ItemCargaPrestamo":
+                    w_Prestamo v_prestamo = new w_Prestamo();
+                    v_prestamo.Owner = this;
+                    v_prestamo.ShowDialog();
+
+                    break;
+
 
                 default:
                     break;
@@ -81,7 +96,7 @@ namespace TuCredito_WPF
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Batallando en c#");
+            MessageBox.Show("Desastre ko Marito");
         }
     }
 }

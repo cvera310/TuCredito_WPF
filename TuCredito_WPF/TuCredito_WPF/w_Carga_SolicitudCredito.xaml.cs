@@ -20,14 +20,14 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Carga_SolicitudCredito : Window
     {
-        TCEntities db;
+        TuCreDitEntities db;
         string InformConfEstado = "T";
         HttpClient client = new HttpClient();
 
         public w_Carga_SolicitudCredito()
         {
             InitializeComponent();
-            db = new TCEntities();
+            db = new TuCreDitEntities();
             client.BaseAddress = new Uri("https://tucreditoazure.azurewebsites.net/");
 
         }

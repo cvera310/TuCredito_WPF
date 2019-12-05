@@ -19,11 +19,11 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Prestamo : Window
     {
-        TCEntities db;
+        TuCreDitEntities db;
         public w_Prestamo()
         {
             InitializeComponent();
-            db = new TCEntities();
+            db = new TuCreDitEntities();
             InitializeComponent();
         }
 
@@ -101,6 +101,7 @@ namespace TuCredito_WPF
             Cliente Cli = ObtenerCliente(NroDoc);
             if (Cli != null)
             {
+                
                 MessageBox.Show("Cliente existe");
             }
         }
@@ -129,6 +130,25 @@ namespace TuCredito_WPF
             return cli;
 
         }
+
+
+
+        private Solicitud_Credito ObtenerClienteMonto(int Monto)
+        {
+            Solicitud_Credito sc = null;
+            List<Solicitud_Credito> ListaSolicitudes = new List<Solicitud_Credito>();
+            ListaSolicitudes = db.Solicitud_Credito.ToList();
+            int MontoSolicitado = Convert.ToInt32(txtMonSolicitado.Text);
+
+            Solicitud_Credito solicitud = (Solicitud_Credito)(from s in ListaSolicitudes
+                                                           where (/*c.TipoDocumento == TipoDoc &&*/ s.MontoSolicitado == MontoSolicitado)
+                                       select s).Single();
+            sc = solicitud;
+
+            return sc;
+
+        }
+
 
         private void btnGenerarCuotas_Click(object sender, RoutedEventArgs e)
         {

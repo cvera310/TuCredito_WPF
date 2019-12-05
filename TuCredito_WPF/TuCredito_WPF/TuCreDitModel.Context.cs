@@ -13,10 +13,10 @@ namespace TuCredito_WPF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TCEntities : DbContext
+    public partial class TuCreDitEntities : DbContext
     {
-        public TCEntities()
-            : base("name=TCEntities")
+        public TuCreDitEntities()
+            : base("name=TuCreDitEntities")
         {
         }
     

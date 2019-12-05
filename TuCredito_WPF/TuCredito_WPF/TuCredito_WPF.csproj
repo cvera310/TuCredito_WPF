@@ -47,15 +47,24 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.CognitiveServices.Vision.ComputerVision.5.0.0\lib\net452\Microsoft.Azure.CognitiveServices.Vision.ComputerVision.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.21\lib\net461\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -81,44 +90,44 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AspNetRoles.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaims.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogins.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUsers.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cargo.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cliente.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza_cheque.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cobranza_detalle.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Comentario.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="c_Informconf.cs" />
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="forma_pago.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Informconf.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -127,49 +136,53 @@
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="moneda.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OCRServices.cs" />
     <Compile Include="personal.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="prestamo.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="prestamo_detalle.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PruebaIA.xaml.cs">
+      <DependentUpon>PruebaIA.xaml</DependentUpon>
     </Compile>
     <Compile Include="sexo.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Solicitud_Credito.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCModel.edmx</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoDeDocumento.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tipo_prestamo.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TuCreDitModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TuCreDitModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TuCreDitModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TuCreDitModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TuCreDitModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">
-      <DependentUpon>TCModel.tt</DependentUpon>
+      <DependentUpon>TuCreDitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs" />
     <Compile Include="w_AprobarSolicitud.xaml.cs">
@@ -223,12 +236,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="TCModel.edmx">
+    <EntityDeploy Include="TuCreDitModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TCModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TuCreDitModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="TCModel.edmx.diagram">
-      <DependentUpon>TCModel.edmx</DependentUpon>
+    <None Include="TuCreDitModel.edmx.diagram">
+      <DependentUpon>TuCreDitModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +260,10 @@
     <Page Include="Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PruebaIA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="w_AprobarSolicitud.xaml">
       <SubType>Designer</SubType>
@@ -286,15 +303,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TCModel.Context.tt">
+    <Content Include="TuCreDitModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TCModel.edmx</DependentUpon>
-      <LastGenOutput>TCModel.Context.cs</LastGenOutput>
+      <DependentUpon>TuCreDitModel.edmx</DependentUpon>
+      <LastGenOutput>TuCreDitModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TCModel.tt">
+    <Content Include="TuCreDitModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TCModel.edmx</DependentUpon>
-      <LastGenOutput>TCModel.cs</LastGenOutput>
+      <DependentUpon>TuCreDitModel.edmx</DependentUpon>
+      <LastGenOutput>TuCreDitModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

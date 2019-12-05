@@ -19,11 +19,11 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_AprobarSolicitud : Window
     {
-        TCEntities db;
+        TuCreDitEntities db;
         public w_AprobarSolicitud()
         {
             InitializeComponent();
-            db = new TCEntities();
+            db = new TuCreDitEntities();
         }
 
         private void CargarGrilla()

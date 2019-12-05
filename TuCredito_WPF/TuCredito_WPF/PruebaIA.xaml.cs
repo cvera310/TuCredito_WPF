@@ -46,7 +46,7 @@ namespace TuCredito_WPF
 
         private async void GetText_Click(object sender, RoutedEventArgs e)
         {
-            OutputTextBlock.Text = "Thinking...";
+            OutputTextBlock.Text = "Por favor espere........";
             var language = OcrLanguages.En;
             OcrResult ocrResult = await OCRServices.UploadAndRecognizeImageAsync(ImagePath, language);
             string resultText = await OCRServices.FormatOcrResult(ocrResult);
