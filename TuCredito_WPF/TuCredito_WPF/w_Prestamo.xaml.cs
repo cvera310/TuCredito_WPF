@@ -19,11 +19,11 @@ namespace TuCredito_WPF
     /// </summary>
     public partial class w_Prestamo : Window
     {
-        PEntities db;
+        TCEntities db;
         public w_Prestamo()
         {
             InitializeComponent();
-            db = new PEntities();
+            db = new TCEntities();
             InitializeComponent();
         }
 
@@ -147,6 +147,11 @@ namespace TuCredito_WPF
             dtpFecha.Text = "";
             cboMoneda.SelectedItem = false;
             txtInteres.Text = "";
+        }
+
+        private void DgPrestamoDetalle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
     }

@@ -172,6 +172,9 @@
       <DependentUpon>TCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs" />
+    <Compile Include="w_AprobarSolicitud.xaml.cs">
+      <DependentUpon>w_AprobarSolicitud.xaml</DependentUpon>
+    </Compile>
     <Compile Include="w_Carga_SolicitudCredito.xaml.cs">
       <DependentUpon>w_Carga_SolicitudCredito.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="w_AprobarSolicitud.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

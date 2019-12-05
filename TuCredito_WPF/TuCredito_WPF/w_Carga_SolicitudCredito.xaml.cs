@@ -22,11 +22,13 @@ namespace TuCredito_WPF
     {
         TCEntities db;
         string InformConfEstado = "T";
+        HttpClient client = new HttpClient();
 
         public w_Carga_SolicitudCredito()
         {
             InitializeComponent();
             db = new TCEntities();
+            client.BaseAddress = new Uri("https://tucreditoazure.azurewebsites.net/");
 
         }
 
@@ -36,6 +38,7 @@ namespace TuCredito_WPF
 
 
             rdbCI.IsChecked = true;
+            BloquearForm();
             //txtIngresos.IsEnabled = false;
             //txtEgresos.IsEnabled = false;
             //txtMonto.IsEnabled = false;
@@ -47,7 +50,7 @@ namespace TuCredito_WPF
             txtDirecion.IsEnabled = false;
             txtLugartrabajo.IsEnabled = false;
             txtAntiguedad.IsEnabled = false;
-            lblAntiguedad.Foreground = new SolidColorBrush(Colors.Red);
+           // lblAntiguedad.Foreground = new SolidColorBrush(Colors.Red);
         }
 
         void TxtCICliente_LostFocus(object sender, RoutedEventArgs e)
@@ -67,9 +70,19 @@ namespace TuCredito_WPF
 
         private Cliente OtenerCliente(string Documento)
         {
+            
             Cliente cli = null;
             List<Cliente> ListaClientes = new List<Cliente>();
-            ListaClientes = db.Cliente.ToList();
+            try
+            {
+                ListaClientes = db.Cliente.ToList();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Problema de RED al cargar los datos, la red no anda, todo es culpa de la red...dude, trust me");
+            }
+
             string documentoNro = txtCICliente.Text;
             int TipoDoc;
             if (rdbCI.IsChecked == true)
@@ -121,6 +134,19 @@ namespace TuCredito_WPF
             txtDirecion.Text = "";
             txtLugartrabajo.Text = "";
             txtAntiguedad.Text = "";
+            lblCliente.Foreground = new SolidColorBrush(Colors.Black);
+            lblnombre.Foreground = new SolidColorBrush(Colors.Black);
+            lblApellido.Foreground = new SolidColorBrush(Colors.Black);
+            lblRazonsocial.Foreground = new SolidColorBrush(Colors.Black);
+            lblDireccion.Foreground = new SolidColorBrush(Colors.Black);
+            lblLugarTrabajo.Foreground = new SolidColorBrush(Colors.Black);
+            lblAntiguedad.Foreground = new SolidColorBrush(Colors.Black);
+            txtNombre.Foreground = new SolidColorBrush(Colors.Black);
+            txtApellido.Foreground = new SolidColorBrush(Colors.Black);
+            txtrazonSocial.Foreground = new SolidColorBrush(Colors.Black);
+            txtDirecion.Foreground = new SolidColorBrush(Colors.Black);
+            txtLugartrabajo.Foreground = new SolidColorBrush(Colors.Black);
+            txtAntiguedad.Foreground = new SolidColorBrush(Colors.Black);
 
 
 
@@ -173,15 +199,14 @@ namespace TuCredito_WPF
 
         private void Infromconf( int CI)
         {
-            HttpClient client = new HttpClient();
-            Boolean informconf = false;
-            client.BaseAddress = new Uri("https://tucreditoazure.azurewebsites.net/");
-
+           
+           // Boolean informconf = false;
+           
             try
             {
 
 
-                HttpResponseMessage respuesta = client.GetAsync("api/Informconfs/" + informconf).Result;
+                HttpResponseMessage respuesta = client.GetAsync("api/Informconfs/" + CI).Result;
                 if (respuesta.IsSuccessStatusCode)
                 {
                     InformConfEstado = "S";
@@ -190,6 +215,7 @@ namespace TuCredito_WPF
                 {
                     //Acá se pone N para cualquier otro estado, igual no va a poder cargar la silicitud si es que falla el httpclient
                     InformConfEstado = "N";
+                   // MessageBox.Show("Error Code" + respuesta.StatusCode + " : Message - " + respuesta.ReasonPhrase);
                 }
 
 
@@ -225,41 +251,61 @@ namespace TuCredito_WPF
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
-            Infromconf(Convert.ToInt32(txtCICliente.Text));
-
-            if (InformConfEstado == "S")
+            try
             {
-                if (MessageBox.Show("¡¡Cliente con Infromconf!! ¿Desea continuar?", "Informconf", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
+
+
+                Infromconf(Convert.ToInt32(txtCICliente.Text));
+
+                if (InformConfEstado == "S")
                 {
-                    lblnombre.Foreground= new SolidColorBrush(Colors.Red);
-                    lblApellido.Foreground = new SolidColorBrush(Colors.Red);
-                    lblRazonsocial.Foreground = new SolidColorBrush(Colors.Red);
-                    lblDireccion.Foreground = new SolidColorBrush(Colors.Red);
-                    lblLugarTrabajo.Foreground = new SolidColorBrush(Colors.Red);
-                    lblAntiguedad.Foreground = new SolidColorBrush(Colors.Red);
-                    txtNombre.Foreground = new SolidColorBrush(Colors.Red);
-                    txtApellido.Foreground = new SolidColorBrush(Colors.Red);
+                    if (MessageBox.Show("¡¡Cliente con Infromconf!! ¿Desea continuar?", "Informconf", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
+                    {
+                        lblCliente.Foreground= new SolidColorBrush(Colors.Red);
+                        lblnombre.Foreground = new SolidColorBrush(Colors.Red);
+                        lblApellido.Foreground = new SolidColorBrush(Colors.Red);
+                        lblRazonsocial.Foreground = new SolidColorBrush(Colors.Red);
+                        lblDireccion.Foreground = new SolidColorBrush(Colors.Red);
+                        lblLugarTrabajo.Foreground = new SolidColorBrush(Colors.Red);
+                        lblAntiguedad.Foreground = new SolidColorBrush(Colors.Red);
+                        txtNombre.Foreground = new SolidColorBrush(Colors.Red);
+                        txtApellido.Foreground = new SolidColorBrush(Colors.Red);
+                        txtrazonSocial.Foreground= new SolidColorBrush(Colors.Red);
+                        txtDirecion.Foreground = new SolidColorBrush(Colors.Red);
+                        txtLugartrabajo.Foreground= new SolidColorBrush(Colors.Red);
+                        txtAntiguedad.Foreground= new SolidColorBrush(Colors.Red);
 
+                        DesbloquearForm();
 
+                    }
+                    else
+                    {
+                        //si se le da a cancelar
+                        LimpiarTodo();
 
+                    }
                 }
                 else
                 {
-                    //si se le da a cancelar
-
+                    MessageBox.Show("Cliente limpio");
+                    DesbloquearForm();
                 }
+
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Cliente limpio");
-                DesbloquearForm();
+
+                MessageBox.Show("Verifique los datos ingresados");
+                LimpiarTodo();
             }
 
 
+        }
 
-
-
-
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            LimpiarTodo();
+            BloquearForm();
         }
     }
 }
