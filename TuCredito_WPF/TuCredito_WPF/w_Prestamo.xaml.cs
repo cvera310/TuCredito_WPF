@@ -90,12 +90,12 @@ namespace TuCredito_WPF
                     db.prestamo.Add(p);
                     db.SaveChanges();
 
+                    sc1.aprobado = "X";
+                    db.Entry(sc1).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
 
-
-
-
-
-
+                    CargarGrilla();
+                    Limpiar();
 
                     MessageBox.Show("Registro Agregado Correctamente!");
 
@@ -303,6 +303,22 @@ namespace TuCredito_WPF
 
 
 
+        }
+
+        private void Limpiar()
+        {
+            txtnombre.Text = "";
+            txtApellido.Text = "";
+            txtCuotas.Text = "";
+            txtInteres.Text = "";
+            txtInteresGenerado.Text = "";
+            txtMoneda.Text = "";
+            txtMonTotal.Text = "";
+            txtMonSolicitado.Text = "";
+            cmbTipo.SelectedValue = null;
+            dtpFecha.Text = "";
+            dgPrestamos.ItemsSource = null;
+            
         }
     }
 }

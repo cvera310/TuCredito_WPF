@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TuCredito_WPF"
         mc:Ignorable="d"
-        Title="w_Carga_SolicitudCredito" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Carga de Solicitud" Height="450" Width="800" Loaded="Window_Loaded">
     <Canvas>
         <Grid x:Name="dgCharlas"  Canvas.Left="337" Canvas.Top="45" Height="317" Width="381">
             <Label x:Name="lblCliente" Content="Datos del Cliente" Height="23"   Width="120" Margin="119,10,132,284" />
